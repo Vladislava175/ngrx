@@ -1,0 +1,37 @@
+<button (click)="addTenant()">Add tenant</button>
+<button (click)="deleteTenant()">Delete tenant</button>
+<div *ngIf="!(error$ |async)" [class.loading]="loading$ |async">
+
+</div>
+<table [dataSource]="dataSource" class="mat-elevation-z8" mat-table>
+
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+  <ng-container matColumnDef="tz">
+    <th *matHeaderCellDef mat-header-cell>מס ח.פ.</th>
+    <td *matCellDef="let element" mat-cell> {{element.business_Id}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="companyName">
+    <th *matHeaderCellDef mat-header-cell> בנק מצרף</th>
+    <td *matCellDef="let element" mat-cell> {{element.origin.name}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="status">
+    <th *matHeaderCellDef mat-header-cell> סטטוס</th>
+    <td *matCellDef="let element" mat-cell> {{element.status.name}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="name">
+    <th *matHeaderCellDef mat-header-cell> שם חברה</th>
+    <td *matCellDef="let element" mat-cell> {{element.name}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="creationDate">
+    <th *matHeaderCellDef mat-header-cell>תאריך יצירה</th>
+    <td *matCellDef="let element" mat-cell> {{element.creation_date | date:'dd/MM/yy HH:mm':'+0400'}}  </td>
+  </ng-container>
+  <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+  <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+</table>

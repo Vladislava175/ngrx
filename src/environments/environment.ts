@@ -3,7 +3,16 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiUrl: 'https://idb-staging-api.silvernet.co.il/api/v1/',
+  config: {
+    authority: 'https://idb-staging-api.silvernet.co.il/sts/v1',
+    client_id: 'back-office-client',
+    redirect_uri: 'http://localhost:4200/tenants',
+    post_logout_redirect_uri: 'http://localhost:4200/login',
+    response_type: 'id_token token',
+    scope: 'openid profile api'
+  }
 };
 
 /*

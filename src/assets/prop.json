@@ -1,0 +1,42 @@
+{
+  "tenants": [
+    {
+      "id": 34,
+      "name": "roei",
+      "country": {
+        "id": 100,
+        "iso_code": "IL",
+        "name": "Israel"
+      },
+      "origin": {
+        "id": 1,
+        "name": "SilverNet"
+      },
+      "status": {
+        "id": 1,
+        "name": "New"
+      },
+      "business_Id": "151151",
+      "creation_date": 5461414464
+    },
+    {
+      "id": 35,
+      "name": "roei",
+      "country": {
+        "id": 100,
+        "iso_code": "IL",
+        "name": "Israel"
+      },
+      "origin": {
+        "id": 1,
+        "name": "SilverNet"
+      },
+      "status": {
+        "id": 1,
+        "name": "New"
+      },
+      "business_Id": "151151",
+      "creation_date": 5461414464
+    }
+  ]
+}
