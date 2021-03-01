@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {UserManager, UserManagerSettings} from 'oidc-client';
 import {Subject} from 'rxjs';
 import {environment} from '../../environments/environment';
+import {StorageService} from './storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class AuthService {
   private user: any = null;
   private userLoginSubject = new Subject<boolean>();
 
-  constructor() {
+  constructor(private storageService: StorageService) {
     this.manager.getUser().then(user => {
       this.user = user;
     });
@@ -20,6 +21,7 @@ export class AuthService {
 
 
   signIn(): Promise<void> {
+    this.storageService.clear();
     return this.manager.signinRedirect();
   }
 

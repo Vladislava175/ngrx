@@ -13,7 +13,6 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    sessionStorage.removeItem('token');
     this.authService.signIn();
   }
 

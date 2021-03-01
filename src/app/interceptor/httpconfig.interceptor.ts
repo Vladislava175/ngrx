@@ -3,15 +3,16 @@ import {HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest,
 
 import {Observable, throwError} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
+import {StorageService} from '../service/storage.service';
 
 
 @Injectable()
 export class HttpConfigInterceptor implements HttpInterceptor {
-  constructor() {
+  constructor(private storageService: StorageService) {
   }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const token = sessionStorage.getItem('token');
+    const token = this.storageService.getItem('token');
     let auth = 'Bearer ' + token;
     request = request.clone({
       setHeaders: {

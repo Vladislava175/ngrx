@@ -20,6 +20,7 @@ import {TenantService} from './service/tenants.service';
 import {LoginComponent} from './login/login.component';
 import {AuthService} from './service/auth.service';
 import {TenantsComponent} from './tenants/tenants.component';
+import {StorageService} from './service/storage.service';
 
 
 @NgModule({
@@ -59,6 +60,7 @@ import {TenantsComponent} from './tenants/tenants.component';
       multi: true
     },
     TenantService,
+    StorageService,
     AuthService
   ],
   bootstrap: [AppComponent]

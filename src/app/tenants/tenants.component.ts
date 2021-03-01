@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthService} from '../service/auth.service';
+import {StorageService} from '../service/storage.service';
 
 @Component({
   selector: 'app-tenants',
@@ -9,12 +10,12 @@ import {AuthService} from '../service/auth.service';
 })
 export class TenantsComponent implements OnInit {
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(private authService: AuthService, private router: Router, private storageService: StorageService) {
   }
 
   ngOnInit(): void {
     this.authService.completeSignIn().then((res: any) => {
-      sessionStorage.setItem('token', res.access_token);
+      this.storageService.setItem('token', res.access_token);
       this.router.navigate(['tenants-list']);
     });
   }
