@@ -33,6 +33,6 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.router.navigate(['tenants-list']);
+    // this.router.navigate(['login']);
   }
 }

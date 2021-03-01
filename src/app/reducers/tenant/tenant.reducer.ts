@@ -25,7 +25,7 @@ export const tenantsReducer = (state = initialState, action: TenantsActions) => 
     case tenantsActionsType.loadSuccess:
       return {
         ...state,
-        list: action.payload,
+        tenants: action.payload,
         loading: false
       };
 

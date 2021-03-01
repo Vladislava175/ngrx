@@ -30,6 +30,7 @@ export class TenantsListComponent implements OnInit {
     this.tenants$ = this.store$.select(store => store.tenants);
 
     this.tenants$.subscribe((res: any) => {
+      debugger
       this.dataSource = res.tenants;
     });
   }
