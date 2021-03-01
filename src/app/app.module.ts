@@ -8,19 +8,20 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {environment} from '../environments/environment';
 import {EffectsModule} from '@ngrx/effects';
 import {StoreRouterConnectingModule} from '@ngrx/router-store';
-import {AppEffects} from '../app.effects';
-import {metaReducers, reducers} from './reducers';
-import {TenantsListComponent} from './tenants-list/tenants-list.component';
+import {metaReducers, reducers} from './store';
+import {TenantsListComponent} from './components/tenants-list/tenants-list.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatTableModule} from '@angular/material/table';
-import {NewTenantComponent} from './new-tenant/new-tenant.component';
+import {NewTenantComponent} from './components/new-tenant/new-tenant.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {HttpConfigInterceptor} from './interceptor/httpconfig.interceptor';
 import {TenantService} from './service/tenants.service';
-import {LoginComponent} from './login/login.component';
+import {LoginComponent} from './components/login/login.component';
 import {AuthService} from './service/auth.service';
-import {TenantsComponent} from './tenants/tenants.component';
+import {TenantsComponent} from './components/tenants/tenants.component';
 import {StorageService} from './service/storage.service';
+import {TenantDetailsComponent} from './components/tenant-details/tenant-details.component';
+import {MaterialModule} from './shared/material.module';
+import {TenantsEffects} from './store/tenants/tenants.effects';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import {StorageService} from './service/storage.service';
     TenantsListComponent,
     NewTenantComponent,
     LoginComponent,
-    TenantsComponent
+    TenantsComponent,
+    TenantDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -48,10 +50,10 @@ import {StorageService} from './service/storage.service';
 
     HttpClientModule,
     StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
-    EffectsModule.forRoot([AppEffects]),
+    EffectsModule.forRoot([TenantsEffects]),
     StoreRouterConnectingModule.forRoot(),
     BrowserAnimationsModule,
-    MatTableModule,
+    MaterialModule
   ],
   providers: [
     {

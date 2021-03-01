@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {AuthService} from '../service/auth.service';
-import {StorageService} from '../service/storage.service';
+import {AuthService} from '../../service/auth.service';
+import {StorageService} from '../../service/storage.service';
 
 @Component({
   selector: 'app-tenants',

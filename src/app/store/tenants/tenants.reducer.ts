@@ -1,5 +1,5 @@
-import {TenantsActions, tenantsActionsType} from './tenant.actions';
 import {Tenant} from '../../models/tenant';
+import {TenantsActions, tenantsActionsType} from './tenants.actions';
 
 export const tenantsNode = 'tenants';
 

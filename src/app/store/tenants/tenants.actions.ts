@@ -11,6 +11,9 @@ export enum tenantsActionsType {
   load = '[TENANTS] load tenants Failure',
   loadSuccess = '[TENANTS] load tenants success',
   loadFailure = '[TENANTS] load tenants Failure',
+  getTenant = '[TENANTS] load tenants Failure',
+  getTenantSuccess = '[TENANT] load tenant success',
+  getTenantFailure = '[TENANT] load tenant Failure',
 
 }
 

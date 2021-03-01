@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
 import {Actions, Effect, ofType} from '@ngrx/effects';
-import {countActionsType, CountUpdatedAtAction} from './app/reducers/count/count.actions';
 import {catchError, map, mergeMap} from 'rxjs/operators';
+
+import {of} from 'rxjs';
 import {
   AddTenantAction,
   AddTenantFailureAction,
@@ -9,21 +10,20 @@ import {
   DeleteTenantAction,
   DeleteTenantFailureAction,
   DeleteTenantSuccessAction,
-  LoadTenantAction,
+  GetTenantsAction,
   LoadTenantFailureAction,
   LoadTenantSuccessAction,
   tenantsActionsType
-} from './app/reducers/tenant/tenant.actions';
-import {TenantService} from './app/service/tenants.service';
-import {of} from 'rxjs';
+} from './tenants.actions';
+import {TenantService} from '../../service/tenants.service';
 
 @Injectable()
-export class AppEffects {
+export class TenantsEffects {
 
 
-  @Effect() loadShopping$ = this.actions$
+  @Effect() loadTenants$ = this.actions$
     .pipe(
-      ofType<LoadTenantAction>(tenantsActionsType.load, tenantsActionsType.tenants),
+      ofType<GetTenantsAction>(tenantsActionsType.tenants),
       mergeMap(
         () => this.tenantService.getTenants()
           .pipe(
@@ -35,7 +35,7 @@ export class AppEffects {
       ),
     );
 
-  @Effect() addShoppingItem$ = this.actions$
+  @Effect() addTenants$ = this.actions$
     .pipe(
       ofType<AddTenantAction>(tenantsActionsType.add),
       mergeMap(
@@ -47,7 +47,7 @@ export class AppEffects {
       )
     );
 
-  @Effect() deleteShoppingItem$ = this.actions$
+  @Effect() deleteTenants$ = this.actions$
     .pipe(
       ofType<DeleteTenantAction>(tenantsActionsType.delete),
       mergeMap(
@@ -62,14 +62,14 @@ export class AppEffects {
   constructor(private actions$: Actions, private tenantService: TenantService) {
   }
 
-  updatedAt() {
-    return this.actions$.pipe(
-      ofType(countActionsType.increase, countActionsType.decrease, countActionsType.clean),
-      map(() => {
-        return new CountUpdatedAtAction({
-          updateAt: Date.now()
-        });
-      })
-    );
-  }
+  /*  updatedAt() {
+      return this.actions$.pipe(
+        ofType(countActionsType.increase, countActionsType.decrease, countActionsType.clean),
+        map(() => {
+          return new CountUpdatedAtAction({
+            updateAt: Date.now()
+          });
+        })
+      );
+    }*/
 }

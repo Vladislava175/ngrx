@@ -1,13 +1,18 @@
 import {Injectable} from '@angular/core';
 import {ProxyService} from './proxy.service';
-import {delay} from 'rxjs/operators';
+import {delay, find, mergeAll} from 'rxjs/operators';
+import {Store} from '@ngrx/store';
+import {Observable} from 'rxjs';
+import {Tenant} from '../models/tenant';
+import {TenantsState} from '../store/tenants/tenants.reducer';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TenantService {
+  tenants$: Observable<Tenant[]> = this.store.select(store => store.tenants);
 
-  constructor(private proxy: ProxyService) {
+  constructor(private proxy: ProxyService, private store: Store<TenantsState>) {
   }
 
   getTenants() {
@@ -46,5 +51,13 @@ export class TenantService {
 
   sendMessage(tenantId: number, userId: number, data: any) {
     return this.proxy.post(`membership/tenant/${tenantId}/user/${userId}/invitation`, {data});
+  }
+
+  getTenantById(id: any) {
+    debugger
+    return this.tenants$.pipe(
+      mergeAll(),
+      find(output => output.id === id)
+    );
   }
 }

@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {select, Store} from '@ngrx/store';
 import {Observable} from 'rxjs';
-import {selectCount, updateCount} from './reducers/count/count-selectors';
-import {CountState} from './reducers/count/count.reducer';
-import {CountCleanAction, CountDecreaseAction, CountIncreaseAction} from './reducers/count/count.actions';
+import {selectCount, updateCount} from './store/count/count-selectors';
+import {CountState} from './store/count/count.reducer';
+import {CountCleanAction, CountDecreaseAction, CountIncreaseAction} from './store/count/count.actions';
 import {map} from 'rxjs/operators';
 import {Router} from '@angular/router';
 

@@ -1,15 +1,16 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {TenantsListComponent} from './tenants-list/tenants-list.component';
-import {LoginComponent} from './login/login.component';
-import {TenantsComponent} from './tenants/tenants.component';
+import {TenantsListComponent} from './components/tenants-list/tenants-list.component';
+import {LoginComponent} from './components/login/login.component';
+import {TenantsComponent} from './components/tenants/tenants.component';
+import {TenantDetailsComponent} from './components/tenant-details/tenant-details.component';
 
 const routes: Routes = [
-  {path: 'tenants-list', pathMatch: 'full', component: TenantsListComponent},
+  {path: 'tenants-list', component: TenantsListComponent},
   {path: 'login', pathMatch: 'full', component: LoginComponent},
-  {path: 'tenants', pathMatch: 'full', component: TenantsComponent},
+  {path: 'tenant-details/:id', component: TenantDetailsComponent},
+  {path: 'tenants', component: TenantsComponent},
   {path: '', pathMatch: 'full', redirectTo: '/login'},
-
 ];
 
 @NgModule({

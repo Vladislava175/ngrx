@@ -1,6 +1,6 @@
 <button (click)="addTenant()">Add tenant</button>
 <button (click)="deleteTenant()">Delete tenant</button>
-<div *ngIf="!(error$ |async)" [class.loading]="loading$ |async">
+<div *ngIf="!(error$ |async)" [class.loading]="loading$ | async">
 
 </div>
 <table [dataSource]="dataSource" class="mat-elevation-z8" mat-table>
@@ -33,5 +33,5 @@
     <td *matCellDef="let element" mat-cell> {{element.creation_date | date:'dd/MM/yy HH:mm':'+0400'}}  </td>
   </ng-container>
   <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
-  <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+  <tr *matRowDef="let row; columns: displayedColumns;" [routerLink]="['/tenant-details', row.id]" mat-row></tr>
 </table>

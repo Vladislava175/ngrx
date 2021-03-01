@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
-import {TenantsState} from '../reducers/tenant/tenant.reducer';
 import {Observable} from 'rxjs';
-import {Tenant} from '../models/tenant';
-import {AddTenantAction, DeleteTenantAction, GetTenantsAction} from '../reducers/tenant/tenant.actions';
+import {Tenant} from '../../models/tenant';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {TenantsState} from '../../store/tenants/tenants.reducer';
+import {AddTenantAction, DeleteTenantAction, GetTenantsAction} from '../../store/tenants/tenants.actions';
 
 @Component({
   selector: 'app-tenants-list',
@@ -30,7 +30,6 @@ export class TenantsListComponent implements OnInit {
     this.tenants$ = this.store$.select(store => store.tenants);
 
     this.tenants$.subscribe((res: any) => {
-      debugger
       this.dataSource = res.tenants;
     });
   }
