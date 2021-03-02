@@ -1,1 +1,47 @@
-<p>tenant-details works!</p>
+<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" id="bootstrap-css"
+      rel="stylesheet">
+<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<mat-card class="card company-details">
+  <dt>
+    <div class="header-wrapper align-center">
+      <h1 class='page-title' tabindex="-1">כרטיס לקוח</h1>
+    </div>
+  </dt>
+  <dl>
+    <div *ngFor='let item of tenantHeaderData$ | async' class="dl-wrapper">
+      <dt>{{item.title}}</dt>
+      <dd>{{item.value}}</dd>
+    </div>
+    <dt>
+      <div class='btn-wrapper submit'>
+        <button style="margin-left: 1%; background-color: #075F8F;">עריכת פרטים</button>
+      </div>
+    </dt>
+    <dt>
+      <div class='btn-wrapper submit'>
+        <button style="margin-left: 1%; color: #075F8F;">שליחת מייל</button>
+      </div>
+    </dt>
+    <dt>
+      <div class='btn-wrapper submit'>
+        <button style="margin-left: 1%; background: darkred;">מחיקת טננט</button>
+      </div>
+    </dt>
+  </dl>
+</mat-card>
+
+<nav class="navbar navbar-fixed-top navbar-dark bg-inverse">
+  <div class="container">
+    <ul class="nav navbar-nav" routerLinkActive="active">
+      <li class="nav-item"><a class="nav-link" routerLink="users">משתמשים</a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="pay-card">אמצעי תשלום</a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="packages">קופונים</a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="payments">תשלומים\חיובים</a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="details">פרטי לקוח</a></li>
+    </ul>
+  </div>
+</nav>
+<router-outlet></router-outlet>

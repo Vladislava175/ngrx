@@ -1,0 +1,8 @@
+<mat-card class="card company-details">
+  <dl>
+    <div *ngFor='let item of tenantDetails$ | async' class="dl-wrapper">
+      <dt>{{item.title}}</dt>
+      <dd>{{item.value}}</dd>
+    </div>
+  </dl>
+</mat-card>

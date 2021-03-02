@@ -54,7 +54,6 @@ export class TenantService {
   }
 
   getTenantById(id: any) {
-    debugger
     return this.tenants$.pipe(
       mergeAll(),
       find(output => output.id === id)

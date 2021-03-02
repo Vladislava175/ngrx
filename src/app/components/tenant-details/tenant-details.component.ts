@@ -1,6 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
+import {ActivatedRoute} from '@angular/router';
 import {TenantState} from '../../store/tenant-details/tenant.reducer';
+import {GetTenantAction} from '../../store/tenant-details/tenant.actions';
+import {Observable} from 'rxjs';
+import {TenantDetailsState} from '../../service/tenant-details-state.service';
 
 @Component({
   selector: 'app-tenant-details',
@@ -9,10 +13,17 @@ import {TenantState} from '../../store/tenant-details/tenant.reducer';
 })
 export class TenantDetailsComponent implements OnInit {
 
-  constructor(private store$: Store<TenantState>) {
+  tenantHeaderData$: Observable<any> = this.state.getTenantHeaderData();
+
+  constructor(private route: ActivatedRoute, private store$: Store<TenantState>, private state: TenantDetailsState) {
+
   }
 
   ngOnInit(): void {
+    this.route.params.subscribe((p) => {
+      let id = p['id'];
+      this.store$.dispatch(new GetTenantAction({tenantId: id}));
+    });
   }
 
 }

@@ -3,15 +3,19 @@ import {TenantActions, tenantActionsType} from './tenant.actions';
 export const tenantNode = 'tenant';
 
 export interface TenantState {
-  tenantId: number,
+  tenant: any,
   loading: boolean,
-  error: any
+  error: any,
+  tenantHeaderData: [],
+  tenantDetails: []
 }
 
 const initialState: TenantState = {
-  tenantId: 0,
+  tenant: null,
   loading: false,
-  error: undefined
+  error: undefined,
+  tenantHeaderData: [],
+  tenantDetails: []
 };
 
 export const tenantReducer = (state = initialState, action: TenantActions) => {
@@ -19,12 +23,15 @@ export const tenantReducer = (state = initialState, action: TenantActions) => {
     case tenantActionsType.getTenant:
       return {
         ...state,
-        loading: true
+        loading: true,
+        tenantId: action.payload.tenantId
       };
     case tenantActionsType.getTenantSuccess:
       return {
         ...state,
-        tenants: action.payload,
+        tenant: action.payload.tenant,
+        tenantHeaderData: action.payload.tenantHeaderData,
+        tenantDetails: action.payload.tenantDetails,
         loading: false
       };
 

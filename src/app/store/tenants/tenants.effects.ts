@@ -16,6 +16,8 @@ import {
   tenantsActionsType
 } from './tenants.actions';
 import {TenantService} from '../../service/tenants.service';
+import {TenantDetailsState} from '../../service/tenant-details-state.service';
+import {GetTenantFailureAction, GetTenantSuccessAction, tenantActionsType} from '../tenant-details/tenant.actions';
 
 @Injectable()
 export class TenantsEffects {
@@ -59,7 +61,30 @@ export class TenantsEffects {
       )
     );
 
-  constructor(private actions$: Actions, private tenantService: TenantService) {
+  @Effect({dispatch: true}) setTenantId = this.actions$
+    .pipe(
+      ofType(tenantActionsType.getTenant),
+      mergeMap((state: any) => this.state.getTenantById(state.payload.tenantId)
+        .pipe(
+          map((result: any) => new GetTenantSuccessAction({
+            tenant: result,
+            tenantHeaderData: [{title: 'שם חברה', value: result.name},
+              {title: 'מס ח.פ.', value: result.business_id},
+              {title: 'סטטוס', value: result.status.name}],
+            tenantDetails: [
+              {title: ' בנק מצרף', value: result.origin.name},
+              {title: 'שם הלקוח', value: result.name},
+              {title: 'טלפון נייד', value: result.phone},
+              {title: 'דואר אלקטרוני', value: result.username}
+            ]
+          })),
+          catchError(error => of(new GetTenantFailureAction(error)))
+        ))
+    );
+
+  constructor(private actions$: Actions,
+              private state: TenantDetailsState,
+              private tenantService: TenantService) {
   }
 
   /*  updatedAt() {

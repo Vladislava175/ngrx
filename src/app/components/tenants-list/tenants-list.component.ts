@@ -28,7 +28,6 @@ export class TenantsListComponent implements OnInit {
     this.store$.dispatch(new GetTenantsAction());
     this.initTenantForm();
     this.tenants$ = this.store$.select(store => store.tenants);
-
     this.tenants$.subscribe((res: any) => {
       this.dataSource = res.tenants;
     });

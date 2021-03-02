@@ -1,7 +1,8 @@
 import {Action} from '@ngrx/store';
+import {Obj} from '../../models/obj';
 
 export enum tenantActionsType {
-  getTenant = '[TENANT] load tenants Failure',
+  getTenant = '[TENANT] set tenant',
   getTenantSuccess = '[TENANT] load tenant success',
   getTenantFailure = '[TENANT] load tenant Failure',
 
@@ -9,12 +10,19 @@ export enum tenantActionsType {
 
 export class GetTenantAction implements Action {
   readonly type = tenantActionsType.getTenant;
+
+  constructor(public payload: { tenantId: string }) {
+  }
 }
 
 export class GetTenantSuccessAction implements Action {
   readonly type = tenantActionsType.getTenantSuccess;
 
-  constructor(public payload: {}) {
+  constructor(public payload: {
+    tenant: any,
+    tenantHeaderData: Obj[],
+    tenantDetails: Obj[]
+  }) {
   }
 }
 

@@ -22,6 +22,13 @@ import {StorageService} from './service/storage.service';
 import {TenantDetailsComponent} from './components/tenant-details/tenant-details.component';
 import {MaterialModule} from './shared/material.module';
 import {TenantsEffects} from './store/tenants/tenants.effects';
+import {TenantDetailsState} from './service/tenant-details-state.service';
+import {TenantEffects} from './store/tenant-details/tenant.effects';
+import { UsersComponent } from './components/users/users.component';
+import { PayCardComponent } from './components/pay-card/pay-card.component';
+import { PackagesComponent } from './components/packages/packages.component';
+import { PaymentsComponent } from './components/payments/payments.component';
+import { DetailsComponent } from './components/details/details.component';
 
 
 @NgModule({
@@ -31,7 +38,12 @@ import {TenantsEffects} from './store/tenants/tenants.effects';
     NewTenantComponent,
     LoginComponent,
     TenantsComponent,
-    TenantDetailsComponent
+    TenantDetailsComponent,
+    UsersComponent,
+    PayCardComponent,
+    PackagesComponent,
+    PaymentsComponent,
+    DetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +62,7 @@ import {TenantsEffects} from './store/tenants/tenants.effects';
 
     HttpClientModule,
     StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
-    EffectsModule.forRoot([TenantsEffects]),
+    EffectsModule.forRoot([TenantsEffects, TenantEffects]),
     StoreRouterConnectingModule.forRoot(),
     BrowserAnimationsModule,
     MaterialModule
@@ -62,6 +74,7 @@ import {TenantsEffects} from './store/tenants/tenants.effects';
       multi: true
     },
     TenantService,
+    TenantDetailsState,
     StorageService,
     AuthService
   ],

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="15" height="15" viewBox="0 0 15 15">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_3890" data-name="Rectangle 3890" width="15" height="15" transform="translate(7.435 7.446)" fill="#fff"/>
+    </clipPath>
+  </defs>
+  <g id="Mask_Group_1" data-name="Mask Group 1" transform="translate(-7.435 -7.446)" clip-path="url(#clip-path)">
+    <g id="dashboard" transform="translate(7.697 7.71)">
+      <path id="Caminho_1120" data-name="Caminho 1120" d="M5.578,0H1.056A1.057,1.057,0,0,0,0,1.056V3.769A1.057,1.057,0,0,0,1.056,4.826H5.578A1.057,1.057,0,0,0,6.636,3.769V1.056A1.057,1.057,0,0,0,5.578,0Zm0,0" fill="#fff"/>
+      <path id="Caminho_1121" data-name="Caminho 1121" d="M5.578,241.326H1.056A1.057,1.057,0,0,0,0,242.381v6.328a1.057,1.057,0,0,0,1.056,1.056H5.578a1.057,1.057,0,0,0,1.057-1.056v-6.332A1.057,1.057,0,0,0,5.578,241.326Zm0,0" transform="translate(0 -235.295)" fill="#fff"/>
+      <path id="Caminho_1122" data-name="Caminho 1122" d="M319.3,386.122h-4.523a1.057,1.057,0,0,0-1.056,1.056v2.714a1.057,1.057,0,0,0,1.056,1.056H319.3a1.057,1.057,0,0,0,1.056-1.056v-2.714A1.057,1.057,0,0,0,319.3,386.122Zm0,0" transform="translate(-305.884 -376.472)" fill="#fff"/>
+      <path id="Caminho_1123" data-name="Caminho 1123" d="M319.3,0h-4.523a1.057,1.057,0,0,0-1.056,1.056V7.387a1.057,1.057,0,0,0,1.056,1.058H319.3a1.057,1.057,0,0,0,1.056-1.056V1.056A1.057,1.057,0,0,0,319.3,0Zm0,0" transform="translate(-305.884 0)" fill="#fff"/>
+    </g>
+  </g>
+</svg>
