@@ -15,7 +15,10 @@ export class TenantDetailsComponent implements OnInit {
 
   tenantHeaderData$: Observable<any> = this.state.getTenantHeaderData();
 
-  constructor(private route: ActivatedRoute, private store$: Store<TenantState>, private state: TenantDetailsState, private router: Router) {
+  constructor(private route: ActivatedRoute,
+              private store$: Store<TenantState>,
+              private state: TenantDetailsState,
+              private router: Router) {
 
   }
 

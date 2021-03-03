@@ -12,7 +12,6 @@ export enum tenantsActionsType {
   loadSuccess = '[TENANTS] load tenants success',
   loadFailure = '[TENANTS] load tenants Failure',
   openDialogCreateTenant = '[TENANTS] open create tenant',
-
 }
 
 export class GetTenantsAction implements Action {
@@ -22,7 +21,6 @@ export class GetTenantsAction implements Action {
 
 export class OpenCreateTenantAction implements Action {
   readonly type = tenantsActionsType.openDialogCreateTenant;
-
 }
 
 export class AddTenantAction implements Action {

@@ -22,6 +22,10 @@ export const tenantsReducer = (state = initialState, action: TenantsActions) => 
         ...state,
         loading: true
       };
+    case tenantsActionsType.openDialogCreateTenant:
+      return {
+        ...state
+      };
     case tenantsActionsType.loadSuccess:
       return {
         ...state,

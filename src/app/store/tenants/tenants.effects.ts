@@ -17,7 +17,6 @@ import {
 } from './tenants.actions';
 import {TenantService} from '../../service/tenants.service';
 import {TenantDetailsState} from '../../service/tenant-details-state.service';
-import {GetTenantFailureAction, GetTenantSuccessAction, tenantActionsType} from '../tenant-details/tenant.actions';
 import {Store} from '@ngrx/store';
 import {TenantsState} from './tenants.reducer';
 import {MatDialog} from '@angular/material/dialog';
@@ -65,33 +64,14 @@ export class TenantsEffects {
       )
     );
 
-  @Effect({dispatch: true}) setTenantId = this.actions$
-    .pipe(
-      ofType(tenantActionsType.getTenant),
-      mergeMap((state: any) => this.state.getTenantById(state.payload.tenantId)
-        .pipe(
-          map((result: any) => new GetTenantSuccessAction({
-            tenant: result,
-            tenantHeaderData: [{title: 'שם חברה', value: result.name},
-              {title: 'מס ח.פ.', value: result.business_id},
-              {title: 'סטטוס', value: result.status.name}],
-            tenantDetails: [
-              {title: ' בנק מצרף', value: result.origin.name},
-              {title: 'שם הלקוח', value: result.name},
-              {title: 'טלפון נייד', value: result.phone},
-              {title: 'דואר אלקטרוני', value: result.username}
-            ]
-          })),
-          catchError(error => of(new GetTenantFailureAction(error)))
-        ))
-    );
-  @Effect()
+
+  @Effect({dispatch: false})
   openDialog = this.actions$.pipe(
     ofType(tenantsActionsType.openDialogCreateTenant),
     // withLatestFrom(this.store.pipe(select(getUserName))),
     map(() => {
-      let dialogRef = this.dialog.open(CreateTenantComponent,);
-      return dialogRef.afterClosed();
+      let dialogRef = this.dialog.open(CreateTenantComponent);
+      return dialogRef;
     }),
   );
 

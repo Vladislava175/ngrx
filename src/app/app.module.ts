@@ -30,7 +30,7 @@ import {PackagesComponent} from './components/packages/packages.component';
 import {PaymentsComponent} from './components/payments/payments.component';
 import {DetailsComponent} from './components/details/details.component';
 import {CreateTenantComponent} from './components/create-tenant/create-tenant.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -69,7 +69,8 @@ import {FormsModule} from '@angular/forms';
     StoreRouterConnectingModule.forRoot(),
     BrowserAnimationsModule,
     MaterialModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     {

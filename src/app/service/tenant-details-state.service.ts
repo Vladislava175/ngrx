@@ -22,6 +22,10 @@ export class TenantDetailsState {
     return this.store$.select(store => store.tenant.tenantHeaderData);
   }
 
+  getOrigins(): Observable<any> {
+    return this.store$.select(store => store.tenant.origins);
+  }
+
   getTenantDetails(): Observable<any> {
     return this.store$.select(store => store.tenant.tenantDetails);
   }

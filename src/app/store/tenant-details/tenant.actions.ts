@@ -5,6 +5,9 @@ export enum tenantActionsType {
   getTenant = '[TENANT] set tenant',
   getTenantSuccess = '[TENANT] load tenant success',
   getTenantFailure = '[TENANT] load tenant Failure',
+  getOrigin = '[TENANT] get origin',
+  getOriginSuccess = '[TENANT] get origin success',
+  getOriginFailure = '[TENANT] get origin failure',
 
 }
 
@@ -14,6 +17,25 @@ export class GetTenantAction implements Action {
   constructor(public payload: { tenantId: string }) {
   }
 }
+
+export class GetOriginAction implements Action {
+  readonly type = tenantActionsType.getOrigin;
+}
+
+export class GetOriginSuccessAction implements Action {
+  readonly type = tenantActionsType.getOriginSuccess;
+
+  constructor(public payload: { origins: any[] }) {
+  }
+}
+
+export class GetOriginFailureAction implements Action {
+  readonly type = tenantActionsType.getOriginFailure;
+
+  constructor(public payload: { origins: any[] }) {
+  }
+}
+
 
 export class GetTenantSuccessAction implements Action {
   readonly type = tenantActionsType.getTenantSuccess;
@@ -36,4 +58,7 @@ export class GetTenantFailureAction implements Action {
 export type TenantActions =
   GetTenantAction
   | GetTenantSuccessAction
+  | GetOriginAction
+  | GetOriginSuccessAction
+  | GetOriginFailureAction
   | GetTenantFailureAction;
