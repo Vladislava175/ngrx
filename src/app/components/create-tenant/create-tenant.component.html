@@ -1,0 +1,69 @@
+<!--
+<div class="alert-container">
+  <div class='form'>
+    <form *ngIf="tenantState.tenant == null" [formGroup]="tenantState.tenantForm" class="inputs-container">
+      <div class="input-wrapper last-name">
+        <mat-form-field>
+          <mat-label><a class="star">*</a>מס ח.פ.</mat-label>
+          <input formControlName="businessCode" matInput type="number">
+        </mat-form-field>
+      </div>
+      <div class="input-wrapper email">
+        <mat-form-field>
+          <mat-label><a class="star">*</a> שם חברה</mat-label>
+          <input formControlName="name" matInput>
+        </mat-form-field>
+      </div>
+      <div class="input-wrapper email">
+        <mat-form-field>
+          <mat-label><a class="star">*</a> בנק מצרף</mat-label>
+          <mat-select formControlName="origin">
+            <mat-option *ngFor="let origin of tenantState.origins"
+                        [value]="origin">{{origin.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </form>
+    <form *ngIf="tenantState.tenant != null" [formGroup]="tenantState.userForm" class="inputs-container">
+      <div class="input-wrapper last-name">
+        <mat-form-field>
+          <mat-label><a class="star">*</a>שם פרטי</mat-label>
+          <input formControlName="userName" matInput>
+        </mat-form-field>
+        <div class="input-wrapper last-name">
+          <mat-form-field>
+            <mat-label>שם משפחה<a class="star">*</a></mat-label>
+            <input formControlName="lastName" matInput>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="input-wrapper last-name">
+        <mat-form-field>
+          <mat-label><a class="star">*</a>טלפון נייד</mat-label>
+          <input formControlName="phone"
+                 matInput>
+        </mat-form-field>
+      </div>
+      <div class="input-wrapper last-name">
+        <mat-form-field>
+          <mat-label>כתובת דואר אלקטרוני<a class="star">*</a></mat-label>
+          <input formControlName="mail" matInput>
+        </mat-form-field>
+      </div>
+    </form>
+  </div>
+</div>
+<mat-dialog-actions class='actions'>
+  &lt;!&ndash;  <button class='btn transparent' [mat-dialog-close]="true">ביטול</button>
+    <button class='btn primary' (click)="saveTenant()"
+            *ngIf="tenantState.tenant == null"
+            [disabled]="tenantState.tenantForm.invalid">
+      שמור טננט
+    </button>
+    <button class='btn primary' (click)="saveUser()"
+            *ngIf="tenantState.tenant != null"
+            [mat-dialog-close]="true" [disabled]="tenantState.userForm.invalid || phoneLength">
+      שמור משתמש
+    </button>&ndash;&gt;
+</mat-dialog-actions>
+-->

@@ -24,11 +24,13 @@ import {MaterialModule} from './shared/material.module';
 import {TenantsEffects} from './store/tenants/tenants.effects';
 import {TenantDetailsState} from './service/tenant-details-state.service';
 import {TenantEffects} from './store/tenant-details/tenant.effects';
-import { UsersComponent } from './components/users/users.component';
-import { PayCardComponent } from './components/pay-card/pay-card.component';
-import { PackagesComponent } from './components/packages/packages.component';
-import { PaymentsComponent } from './components/payments/payments.component';
-import { DetailsComponent } from './components/details/details.component';
+import {UsersComponent} from './components/users/users.component';
+import {PayCardComponent} from './components/pay-card/pay-card.component';
+import {PackagesComponent} from './components/packages/packages.component';
+import {PaymentsComponent} from './components/payments/payments.component';
+import {DetailsComponent} from './components/details/details.component';
+import {CreateTenantComponent} from './components/create-tenant/create-tenant.component';
+import {FormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -43,7 +45,8 @@ import { DetailsComponent } from './components/details/details.component';
     PayCardComponent,
     PackagesComponent,
     PaymentsComponent,
-    DetailsComponent
+    DetailsComponent,
+    CreateTenantComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +68,8 @@ import { DetailsComponent } from './components/details/details.component';
     EffectsModule.forRoot([TenantsEffects, TenantEffects]),
     StoreRouterConnectingModule.forRoot(),
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule
   ],
   providers: [
     {

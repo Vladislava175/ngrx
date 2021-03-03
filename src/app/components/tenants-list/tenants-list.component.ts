@@ -4,7 +4,8 @@ import {Observable} from 'rxjs';
 import {Tenant} from '../../models/tenant';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {TenantsState} from '../../store/tenants/tenants.reducer';
-import {AddTenantAction, DeleteTenantAction, GetTenantsAction} from '../../store/tenants/tenants.actions';
+import {DeleteTenantAction, GetTenantsAction, OpenCreateTenantAction} from '../../store/tenants/tenants.actions';
+import {AuthService} from '../../service/auth.service';
 
 @Component({
   selector: 'app-tenants-list',
@@ -21,7 +22,7 @@ export class TenantsListComponent implements OnInit {
   public tenantForm: FormGroup | undefined;
   public tenant: Tenant | undefined;
 
-  constructor(private store$: Store<TenantsState>) {
+  constructor(private store$: Store<TenantsState>, private authService: AuthService) {
   }
 
   ngOnInit(): void {
@@ -34,26 +35,27 @@ export class TenantsListComponent implements OnInit {
   }
 
   addTenant() {
-    let t = {
-      'id': 34,
-      'name': 'roei',
-      'country': {
-        'id': 100,
-        'iso_code': 'IL',
-        'name': 'Israel'
-      },
-      'origin': {
-        'id': 1,
-        'name': 'SilverNet'
-      },
-      'status': {
-        'id': 1,
-        'name': 'New'
-      },
-      'business_Id': '151151',
-      'creation_date': 5461414464
-    };
-    this.store$.dispatch(new AddTenantAction(t));
+    /*    let t = {
+          'id': 34,
+          'name': 'roei',
+          'country': {
+            'id': 100,
+            'iso_code': 'IL',
+            'name': 'Israel'
+          },
+          'origin': {
+            'id': 1,
+            'name': 'SilverNet'
+          },
+          'status': {
+            'id': 1,
+            'name': 'New'
+          },
+          'business_Id': '151151',
+          'creation_date': 5461414464
+        };
+        this.store$.dispatch(new AddTenantAction(t));*/
+    this.store$.dispatch(new OpenCreateTenantAction());
   }
 
   initTenantForm(): void {
@@ -68,6 +70,9 @@ export class TenantsListComponent implements OnInit {
 
   deleteTenant() {
     this.store$.dispatch(new DeleteTenantAction({id: 34}));
+  }
 
+  signOut() {
+    this.authService.signOut();
   }
 }

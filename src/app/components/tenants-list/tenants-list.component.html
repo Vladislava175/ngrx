@@ -1,5 +1,7 @@
 <button (click)="addTenant()">Add tenant</button>
 <button (click)="deleteTenant()">Delete tenant</button>
+<button (click)="signOut()">logout</button>
+
 <div *ngIf="!(error$ |async)" [class.loading]="loading$ | async">
 
 </div>
@@ -33,5 +35,6 @@
     <td *matCellDef="let element" mat-cell> {{element.creation_date | date:'dd/MM/yy HH:mm':'+0400'}}  </td>
   </ng-container>
   <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
-  <tr *matRowDef="let row; columns: displayedColumns;" [routerLink]="['/tenant-details', row.id]" mat-row></tr>
+  <tr *matRowDef="let row; columns: displayedColumns;" [routerLink]="['/tenant-details/'+row.id+'/details' ]"
+      mat-row></tr>
 </table>

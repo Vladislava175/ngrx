@@ -18,6 +18,10 @@ import {
 import {TenantService} from '../../service/tenants.service';
 import {TenantDetailsState} from '../../service/tenant-details-state.service';
 import {GetTenantFailureAction, GetTenantSuccessAction, tenantActionsType} from '../tenant-details/tenant.actions';
+import {Store} from '@ngrx/store';
+import {TenantsState} from './tenants.reducer';
+import {MatDialog} from '@angular/material/dialog';
+import {CreateTenantComponent} from '../../components/create-tenant/create-tenant.component';
 
 @Injectable()
 export class TenantsEffects {
@@ -81,9 +85,20 @@ export class TenantsEffects {
           catchError(error => of(new GetTenantFailureAction(error)))
         ))
     );
+  @Effect()
+  openDialog = this.actions$.pipe(
+    ofType(tenantsActionsType.openDialogCreateTenant),
+    // withLatestFrom(this.store.pipe(select(getUserName))),
+    map(() => {
+      let dialogRef = this.dialog.open(CreateTenantComponent,);
+      return dialogRef.afterClosed();
+    }),
+  );
 
   constructor(private actions$: Actions,
+              private store: Store<TenantsState>,
               private state: TenantDetailsState,
+              private dialog: MatDialog,
               private tenantService: TenantService) {
   }
 
