@@ -1,67 +1,71 @@
 <div class="alert-container">
   <div class='form'>
-    <form class="inputs-container">
+    <form *ngIf="!(disableUser$ | async)"
+          [formGroup]="tenantForm"
+          class="inputs-container">
       <div class="input-wrapper last-name">
         <mat-form-field>
           <mat-label><a class="star">*</a>מס ח.פ.</mat-label>
-          <input matInput type="number">
+          <input formControlName="businessCode" matInput type="number">
         </mat-form-field>
       </div>
       <div class="input-wrapper email">
         <mat-form-field>
           <mat-label><a class="star">*</a> שם חברה</mat-label>
-          <input matInput>
+          <input formControlName="name" matInput>
         </mat-form-field>
       </div>
       <div class="input-wrapper email">
         <mat-form-field>
           <mat-label><a class="star">*</a> בנק מצרף</mat-label>
-          <mat-select>
+          <mat-select formControlName="origin">
             <mat-option *ngFor="let origin of origins$ | async"
-                        [value]="origin">{{origin.name}}</mat-option>
+                        [value]="origin">{{origin.name}}
+            </mat-option>
           </mat-select>
         </mat-form-field>
       </div>
     </form>
-    <form class="inputs-container">
+    <form *ngIf="disableUser$ | async" [formGroup]="userForm" class="inputs-container">
       <div class="input-wrapper last-name">
         <mat-form-field>
           <mat-label><a class="star">*</a>שם פרטי</mat-label>
-          <input matInput>
+          <input formControlName="userName" matInput>
         </mat-form-field>
         <div class="input-wrapper last-name">
           <mat-form-field>
             <mat-label>שם משפחה<a class="star">*</a></mat-label>
-            <input matInput>
+            <input formControlName="lastName" matInput>
           </mat-form-field>
         </div>
       </div>
       <div class="input-wrapper last-name">
         <mat-form-field>
           <mat-label><a class="star">*</a>טלפון נייד</mat-label>
-          <input
-            matInput>
+          <input (input)="checkNumberValidation($event.target)" formControlName="phone"
+                 matInput>
         </mat-form-field>
       </div>
       <div class="input-wrapper last-name">
         <mat-form-field>
           <mat-label>כתובת דואר אלקטרוני<a class="star">*</a></mat-label>
-          <input matInput>
+          <input formControlName="mail" matInput>
         </mat-form-field>
       </div>
     </form>
   </div>
 </div>
 <mat-dialog-actions class='actions'>
-  <!--  <button class='btn transparent' [mat-dialog-close]="true">ביטול</button>
-    <button class='btn primary' (click)="saveTenant()"
-            *ngIf="tenantState.tenant == null"
-            [disabled]="tenantState.tenantForm.invalid">
-      שמור טננט
-    </button>
-    <button class='btn primary' (click)="saveUser()"
-            *ngIf="tenantState.tenant != null"
-            [mat-dialog-close]="true" [disabled]="tenantState.userForm.invalid || phoneLength">
-      שמור משתמש
-    </button>-->
+  <button [mat-dialog-close]="true" class='btn transparent'>ביטול</button>
+  <button (click)="saveTenant()"
+          *ngIf="!(disableUser$ | async)"
+          class='btn primary'>
+    שמור טננט
+  </button>
+  <button (click)="saveUser()"
+          *ngIf="disableUser$ | async"
+          [mat-dialog-close]="true"
+          class='btn primary'>
+    שמור משתמש
+  </button>
 </mat-dialog-actions>

@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
 import {Observable} from 'rxjs';
-import {Tenant} from '../../models/tenant';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {TenantsState} from '../../store/tenants/tenants.reducer';
 import {DeleteTenantAction, GetTenantsAction, OpenCreateTenantAction} from '../../store/tenants/tenants.actions';
@@ -14,13 +13,13 @@ import {AuthService} from '../../service/auth.service';
 })
 export class TenantsListComponent implements OnInit {
   // @ts-ignore
-  public tenants$: Observable<Tenant[]>;
+  public tenants$: Observable<any[]>;
   loading$: Observable<boolean> = this.store$.select(store => store.loading);
   error$: Observable<Error> = this.store$.select(store => store.error);
   public dataSource: any = [];
   public displayedColumns: string[] = ['tz', 'companyName', 'status', 'name', 'creationDate'];
   public tenantForm: FormGroup | undefined;
-  public tenant: Tenant | undefined;
+  public tenant: any | undefined;
 
   constructor(private store$: Store<TenantsState>, private authService: AuthService) {
   }
@@ -30,31 +29,12 @@ export class TenantsListComponent implements OnInit {
     this.initTenantForm();
     this.tenants$ = this.store$.select(store => store.tenants);
     this.tenants$.subscribe((res: any) => {
+      debugger
       this.dataSource = res.tenants;
     });
   }
 
   addTenant() {
-    /*    let t = {
-          'id': 34,
-          'name': 'roei',
-          'country': {
-            'id': 100,
-            'iso_code': 'IL',
-            'name': 'Israel'
-          },
-          'origin': {
-            'id': 1,
-            'name': 'SilverNet'
-          },
-          'status': {
-            'id': 1,
-            'name': 'New'
-          },
-          'business_Id': '151151',
-          'creation_date': 5461414464
-        };
-        this.store$.dispatch(new AddTenantAction(t));*/
     this.store$.dispatch(new OpenCreateTenantAction());
   }
 

@@ -4,7 +4,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {TenantState} from '../../store/tenant-details/tenant.reducer';
 import {GetTenantAction} from '../../store/tenant-details/tenant.actions';
 import {Observable} from 'rxjs';
-import {TenantDetailsState} from '../../service/tenant-details-state.service';
+import {TenantDetailsState} from '../../service/tenant-details-state';
 
 @Component({
   selector: 'app-tenant-details',

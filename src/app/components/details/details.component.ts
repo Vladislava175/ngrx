@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
-import {TenantDetailsState} from '../../service/tenant-details-state.service';
+import {TenantDetailsState} from '../../service/tenant-details-state';
 
 @Component({
   selector: 'app-details',

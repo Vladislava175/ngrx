@@ -3,14 +3,13 @@ import {ProxyService} from './proxy.service';
 import {delay, find, mergeAll} from 'rxjs/operators';
 import {Store} from '@ngrx/store';
 import {Observable} from 'rxjs';
-import {Tenant} from '../models/tenant';
 import {TenantsState} from '../store/tenants/tenants.reducer';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TenantService {
-  tenants$: Observable<Tenant[]> = this.store.select(store => store.tenants);
+  tenants$: Observable<any[]> = this.store.select(store => store.tenants);
 
   constructor(private proxy: ProxyService, private store: Store<TenantsState>) {
   }
@@ -30,6 +29,7 @@ export class TenantService {
   }
 
   addTenant(tenant: any) {
+    debugger
     return this.proxy.post('membership/tenants', JSON.stringify(tenant));
   }
 
@@ -45,8 +45,9 @@ export class TenantService {
     return this.proxy.get(`membership/tenant/${id}/users`);
   }
 
-  addUser(tenantId: number, data: any) {
-    return this.proxy.post(`membership/tenant/${tenantId}/users`, JSON.stringify(data));
+  addUser(user: any, tenantId: string) {
+    debugger
+    return this.proxy.post(`membership/tenant/${tenantId}/users`, JSON.stringify(user));
   }
 
   sendMessage(tenantId: number, userId: number, data: any) {

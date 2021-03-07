@@ -22,7 +22,6 @@ import {StorageService} from './service/storage.service';
 import {TenantDetailsComponent} from './components/tenant-details/tenant-details.component';
 import {MaterialModule} from './shared/material.module';
 import {TenantsEffects} from './store/tenants/tenants.effects';
-import {TenantDetailsState} from './service/tenant-details-state.service';
 import {TenantEffects} from './store/tenant-details/tenant.effects';
 import {UsersComponent} from './components/users/users.component';
 import {PayCardComponent} from './components/pay-card/pay-card.component';
@@ -31,6 +30,8 @@ import {PaymentsComponent} from './components/payments/payments.component';
 import {DetailsComponent} from './components/details/details.component';
 import {CreateTenantComponent} from './components/create-tenant/create-tenant.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {TenantDetailsState} from './service/tenant-details-state';
+import {BoolPipe} from './shared/bool.pipe';
 
 
 @NgModule({
@@ -46,7 +47,9 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     PackagesComponent,
     PaymentsComponent,
     DetailsComponent,
-    CreateTenantComponent
+    CreateTenantComponent,
+    // pipe
+    BoolPipe
   ],
   imports: [
     BrowserModule,

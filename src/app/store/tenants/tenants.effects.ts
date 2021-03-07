@@ -16,11 +16,11 @@ import {
   tenantsActionsType
 } from './tenants.actions';
 import {TenantService} from '../../service/tenants.service';
-import {TenantDetailsState} from '../../service/tenant-details-state.service';
 import {Store} from '@ngrx/store';
 import {TenantsState} from './tenants.reducer';
 import {MatDialog} from '@angular/material/dialog';
 import {CreateTenantComponent} from '../../components/create-tenant/create-tenant.component';
+import {TenantDetailsState} from '../../service/tenant-details-state';
 
 @Injectable()
 export class TenantsEffects {
@@ -32,8 +32,9 @@ export class TenantsEffects {
       mergeMap(
         () => this.tenantService.getTenants()
           .pipe(
-            map(data => {
-              return new LoadTenantSuccessAction(data);
+            map((data: any) => {
+              let response = data.reverse();
+              return new LoadTenantSuccessAction(response);
             }),
             catchError(error => of(new LoadTenantFailureAction(error)))
           )

@@ -14,9 +14,11 @@ export class TenantsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.authService.completeSignIn().then((res: any) => {
-      this.storageService.setItem('token', res.access_token);
-      this.router.navigate(['tenants-list']);
-    });
+    if (!this.storageService.getItem('token')) {
+      this.authService.completeSignIn().then((res: any) => {
+        this.storageService.setItem('token', res.access_token);
+        this.router.navigate(['tenants-list']);
+      });
+    }
   }
 }

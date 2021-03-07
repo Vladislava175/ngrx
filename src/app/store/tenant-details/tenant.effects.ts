@@ -1,7 +1,11 @@
 import {Injectable} from '@angular/core';
 import {Actions, Effect, ofType} from '@ngrx/effects';
-import {TenantDetailsState} from '../../service/tenant-details-state.service';
 import {
+  CreateTenantFailureAction,
+  CreateTenantSuccessAction,
+  CreateUserAction,
+  CreateUserFailureAction,
+  CreateUserSuccessAction,
   GetOriginFailureAction,
   GetOriginSuccessAction,
   GetTenantFailureAction,
@@ -12,6 +16,7 @@ import {catchError, map, mergeMap} from 'rxjs/operators';
 import {of} from 'rxjs';
 import {GetTenantsAction} from '../tenants/tenants.actions';
 import {TenantService} from '../../service/tenants.service';
+import {TenantDetailsState} from '../../service/tenant-details-state';
 
 @Injectable()
 export class TenantEffects {
@@ -45,6 +50,36 @@ export class TenantEffects {
               return new GetOriginSuccessAction({origins: data});
             }),
             catchError(error => of(new GetOriginFailureAction(error)))
+          )
+      ),
+    );
+  @Effect() createTenant$ = this.actions$
+    .pipe(
+      ofType(tenantActionsType.createTenant),
+      mergeMap(
+        (state: any) => this.tenantService.addTenant(state.payload.tenant)
+          .pipe(
+            map(data => {
+              let url = data.headers.get('Location') as string;
+              const lastEqualSignIndex = url.lastIndexOf('/');
+              const tenantId = url.substr(lastEqualSignIndex + 1);
+              return new CreateTenantSuccessAction({tenantId: tenantId});
+            }),
+            catchError(error => of(new CreateTenantFailureAction(error)))
+          )
+      ),
+    );
+  @Effect() createUser$ = this.actions$
+    .pipe(
+      ofType<CreateUserAction>(tenantActionsType.createUser),
+      mergeMap(
+        (state: any) => this.tenantService.addUser(state.payload.user, state.payload.tenantId)
+          .pipe(
+            map(() => {
+              debugger
+              return new CreateUserSuccessAction();
+            }),
+            catchError(error => of(new CreateUserFailureAction(error)))
           )
       ),
     );

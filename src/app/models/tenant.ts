@@ -8,7 +8,7 @@ export interface Tenant {
   name: string;
   country: Country;
   uid: string;
-  creation_date: string;
+  creation_date: Date;
   status: TenantStatus;
   business_id: string;
   origin: Origin;

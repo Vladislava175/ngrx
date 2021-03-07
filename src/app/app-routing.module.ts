@@ -23,9 +23,7 @@ const routes: Routes = [
     ]
   },
   {path: 'tenants', component: TenantsComponent},
-
-
-  {path: '', pathMatch: 'full', redirectTo: '/login'},
+  {path: '**', redirectTo: '/login'}
 ];
 
 @NgModule({

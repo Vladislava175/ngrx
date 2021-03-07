@@ -4,6 +4,7 @@ export const tenantNode = 'tenant';
 
 export interface TenantState {
   tenant: any,
+  user: any,
   loading: boolean,
   error: any,
   origins: [],
@@ -13,6 +14,7 @@ export interface TenantState {
 
 const initialState: TenantState = {
   tenant: null,
+  user: null,
   loading: false,
   error: undefined,
   origins: [],
@@ -21,6 +23,7 @@ const initialState: TenantState = {
 };
 
 export const tenantReducer = (state = initialState, action: TenantActions) => {
+  debugger
   switch (action.type) {
     case tenantActionsType.getTenant:
       return {
@@ -28,9 +31,31 @@ export const tenantReducer = (state = initialState, action: TenantActions) => {
         loading: true,
         tenantId: action.payload.tenantId
       };
-    case tenantActionsType.getOrigin:
+    case tenantActionsType.createTenant:
       return {
-        ...state
+        ...state,
+        tenant: action.payload.tenant
+      };
+    case tenantActionsType.createUser:
+      return {
+        ...state,
+        user: action.payload.user,
+        tenantId: action.payload.tenantId
+      };
+    case tenantActionsType.createUserFailure:
+      return {
+        ...state,
+        error: action.payload
+      };
+    case tenantActionsType.createTenantSuccess:
+      return {
+        ...state,
+        tenant: {['id']: action.payload.tenantId}
+      };
+    case tenantActionsType.createTenantFailure:
+      return {
+        ...state,
+        error: action.payload
       };
     case tenantActionsType.getOriginSuccess:
       return {
