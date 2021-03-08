@@ -3,7 +3,7 @@ import {Store} from '@ngrx/store';
 import {Observable} from 'rxjs';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {TenantsState} from '../../store/tenants/tenants.reducer';
-import {DeleteTenantAction, GetTenantsAction, OpenCreateTenantAction} from '../../store/tenants/tenants.actions';
+import {GetTenantsAction, OpenCreateTenantAction} from '../../store/tenants/tenants.actions';
 import {AuthService} from '../../service/auth.service';
 
 @Component({
@@ -29,7 +29,6 @@ export class TenantsListComponent implements OnInit {
     this.initTenantForm();
     this.tenants$ = this.store$.select(store => store.tenants);
     this.tenants$.subscribe((res: any) => {
-      debugger
       this.dataSource = res.tenants;
     });
   }
@@ -46,10 +45,6 @@ export class TenantsListComponent implements OnInit {
       origin: new FormControl(this.tenant ? this.tenant.origin.name : null, [Validators.required]),
       businessCode: new FormControl(this.tenant ? this.tenant.business_id : '', [Validators.required]),
     });
-  }
-
-  deleteTenant() {
-    this.store$.dispatch(new DeleteTenantAction({id: 34}));
   }
 
   signOut() {

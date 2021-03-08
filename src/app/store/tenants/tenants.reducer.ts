@@ -56,23 +56,6 @@ export const tenantsReducer = (state = initialState, action: TenantsActions) => 
         error: action.payload,
         loading: false
       };
-    case tenantsActionsType.delete:
-      return {
-        ...state,
-        loading: true
-      };
-    case tenantsActionsType.deleteSuccess:
-      return {
-        ...state,
-        tenants: state.tenants.filter(item => item.id !== action.payload),
-        loading: false
-      };
-    case tenantsActionsType.deleteFailure:
-      return {
-        ...state,
-        error: action.payload,
-        loading: false
-      };
     default:
       return state;
   }

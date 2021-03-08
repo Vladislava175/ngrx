@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {ProxyService} from './proxy.service';
-import {delay, find, mergeAll} from 'rxjs/operators';
+import {delay} from 'rxjs/operators';
 import {Store} from '@ngrx/store';
 import {Observable} from 'rxjs';
 import {TenantsState} from '../store/tenants/tenants.reducer';
@@ -21,6 +21,7 @@ export class TenantService {
   }
 
   deleteTenant(id: number) {
+    debugger
     return this.proxy.delete(`membership/tenants/${id}`);
   }
 
@@ -29,7 +30,6 @@ export class TenantService {
   }
 
   addTenant(tenant: any) {
-    debugger
     return this.proxy.post('membership/tenants', JSON.stringify(tenant));
   }
 
@@ -46,8 +46,7 @@ export class TenantService {
   }
 
   addUser(user: any, tenantId: string) {
-    debugger
-    return this.proxy.post(`membership/tenant/${tenantId}/users`, JSON.stringify(user));
+    return this.proxy.post(`membership/tenant/${tenantId}/users`, user);
   }
 
   sendMessage(tenantId: number, userId: number, data: any) {
@@ -55,9 +54,12 @@ export class TenantService {
   }
 
   getTenantById(id: any) {
-    return this.tenants$.pipe(
-      mergeAll(),
-      find(output => output.id === id)
+    /*    return this.tenants$.pipe(
+          mergeAll(),
+          find(output => output.id === id)
+        );*/
+    return this.proxy.get(`membership/tenants/${id}`).pipe(
+      delay(500)
     );
   }
 }

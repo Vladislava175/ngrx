@@ -81,7 +81,6 @@ export class CreateTenantComponent implements OnInit {
   }
 
   saveUser() {
-    debugger
     let tenantId$ = this.store$.pipe(select(selectTenantId));
 
     const u = this.userForm.getRawValue();
@@ -90,8 +89,11 @@ export class CreateTenantComponent implements OnInit {
       'phone': u.phone,
       'first_name': u.userName,
       'last_name': u.lastName,
-      'status': 1
+      'status': '1',
+      'is_asked_to_forward_sms': true
     };
+
+
     tenantId$.subscribe(res => {
       console.log('res', res);
       this.store$.dispatch(new CreateUserAction({user: user, tenantId: res}));
@@ -100,7 +102,6 @@ export class CreateTenantComponent implements OnInit {
 
   // 972528188237
   checkNumberValidation(e: any) {
-    debugger
     if (e.value.length < 5) {
       this.userForm.patchValue({phone: '9725'});
     }

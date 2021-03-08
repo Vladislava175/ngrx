@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Actions, Effect, ofType} from '@ngrx/effects';
+import {Actions, createEffect, Effect, ofType} from '@ngrx/effects';
 import {catchError, map, mergeMap} from 'rxjs/operators';
 
 import {of} from 'rxjs';
@@ -7,9 +7,6 @@ import {
   AddTenantAction,
   AddTenantFailureAction,
   AddTenantSuccessAction,
-  DeleteTenantAction,
-  DeleteTenantFailureAction,
-  DeleteTenantSuccessAction,
   GetTenantsAction,
   LoadTenantFailureAction,
   LoadTenantSuccessAction,
@@ -19,14 +16,14 @@ import {TenantService} from '../../service/tenants.service';
 import {Store} from '@ngrx/store';
 import {TenantsState} from './tenants.reducer';
 import {MatDialog} from '@angular/material/dialog';
-import {CreateTenantComponent} from '../../components/create-tenant/create-tenant.component';
+import {CreateTenantComponent} from '../../dialogs/create-tenant/create-tenant.component';
 import {TenantDetailsState} from '../../service/tenant-details-state';
 
 @Injectable()
 export class TenantsEffects {
 
 
-  @Effect() loadTenants$ = this.actions$
+  loadTenants$ = createEffect(() => this.actions$
     .pipe(
       ofType<GetTenantsAction>(tenantsActionsType.tenants),
       mergeMap(
@@ -39,9 +36,9 @@ export class TenantsEffects {
             catchError(error => of(new LoadTenantFailureAction(error)))
           )
       ),
-    );
+    ));
 
-  @Effect() addTenants$ = this.actions$
+  addTenants$ = createEffect(() => this.actions$
     .pipe(
       ofType<AddTenantAction>(tenantsActionsType.add),
       mergeMap(
@@ -51,20 +48,7 @@ export class TenantsEffects {
             catchError(error => of(new AddTenantFailureAction(error)))
           )
       )
-    );
-
-  @Effect() deleteTenants$ = this.actions$
-    .pipe(
-      ofType<DeleteTenantAction>(tenantsActionsType.delete),
-      mergeMap(
-        (data) => this.tenantService.deleteTenant(1)
-          .pipe(
-            map(() => new DeleteTenantSuccessAction(data.payload)),
-            catchError(error => of(new DeleteTenantFailureAction(error)))
-          )
-      )
-    );
-
+    ));
 
   @Effect({dispatch: false})
   openDialog = this.actions$.pipe(

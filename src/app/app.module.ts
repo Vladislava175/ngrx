@@ -11,7 +11,6 @@ import {StoreRouterConnectingModule} from '@ngrx/router-store';
 import {metaReducers, reducers} from './store';
 import {TenantsListComponent} from './components/tenants-list/tenants-list.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {NewTenantComponent} from './components/new-tenant/new-tenant.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {HttpConfigInterceptor} from './interceptor/httpconfig.interceptor';
 import {TenantService} from './service/tenants.service';
@@ -28,19 +27,21 @@ import {PayCardComponent} from './components/pay-card/pay-card.component';
 import {PackagesComponent} from './components/packages/packages.component';
 import {PaymentsComponent} from './components/payments/payments.component';
 import {DetailsComponent} from './components/details/details.component';
-import {CreateTenantComponent} from './components/create-tenant/create-tenant.component';
+import {CreateTenantComponent} from './dialogs/create-tenant/create-tenant.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {TenantDetailsState} from './service/tenant-details-state';
 import {BoolPipe} from './shared/bool.pipe';
+import {ErrorDialogComponent} from './components/error-dialog/error-dialog.component';
+import {ClosePopupComponent} from './dialogs/close-popup/close-popup.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     TenantsListComponent,
-    NewTenantComponent,
     LoginComponent,
     TenantsComponent,
+    ClosePopupComponent,
     TenantDetailsComponent,
     UsersComponent,
     PayCardComponent,
@@ -48,6 +49,7 @@ import {BoolPipe} from './shared/bool.pipe';
     PaymentsComponent,
     DetailsComponent,
     CreateTenantComponent,
+    ErrorDialogComponent,
     // pipe
     BoolPipe
   ],

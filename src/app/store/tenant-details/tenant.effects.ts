@@ -1,11 +1,13 @@
 import {Injectable} from '@angular/core';
-import {Actions, Effect, ofType} from '@ngrx/effects';
+import {Actions, createEffect, Effect, ofType} from '@ngrx/effects';
 import {
   CreateTenantFailureAction,
   CreateTenantSuccessAction,
   CreateUserAction,
   CreateUserFailureAction,
   CreateUserSuccessAction,
+  DeleteTenantFailureAction,
+  DeleteTenantSuccessAction,
   GetOriginFailureAction,
   GetOriginSuccessAction,
   GetTenantFailureAction,
@@ -26,6 +28,7 @@ export class TenantEffects {
       mergeMap((state: any) => this.state.getTenantById(state.payload.tenantId)
         .pipe(
           map((result: any) => new GetTenantSuccessAction({
+
             tenant: result,
             tenantHeaderData: [{title: 'שם חברה', value: result.name},
               {title: 'מס ח.פ.', value: result.business_id},
@@ -40,7 +43,7 @@ export class TenantEffects {
           catchError(error => of(new GetTenantFailureAction(error)))
         ))
     );
-  @Effect() loadOrigin$ = this.actions$
+  loadOrigin$ = createEffect(() => this.actions$
     .pipe(
       ofType<GetTenantsAction>(tenantActionsType.getOrigin),
       mergeMap(
@@ -52,8 +55,8 @@ export class TenantEffects {
             catchError(error => of(new GetOriginFailureAction(error)))
           )
       ),
-    );
-  @Effect() createTenant$ = this.actions$
+    ));
+  createTenant$ = createEffect(() => this.actions$
     .pipe(
       ofType(tenantActionsType.createTenant),
       mergeMap(
@@ -68,21 +71,31 @@ export class TenantEffects {
             catchError(error => of(new CreateTenantFailureAction(error)))
           )
       ),
-    );
-  @Effect() createUser$ = this.actions$
+    ));
+  createUser$ = createEffect(() => this.actions$
     .pipe(
       ofType<CreateUserAction>(tenantActionsType.createUser),
       mergeMap(
         (state: any) => this.tenantService.addUser(state.payload.user, state.payload.tenantId)
           .pipe(
             map(() => {
-              debugger
               return new CreateUserSuccessAction();
             }),
             catchError(error => of(new CreateUserFailureAction(error)))
           )
       ),
-    );
+    ));
+  deleteTenants$ = createEffect(() => this.actions$
+    .pipe(
+      ofType(tenantActionsType.deleteTenant),
+      mergeMap(
+        (data: any) => this.tenantService.deleteTenant(data.payload)
+          .pipe(
+            map(() => new DeleteTenantSuccessAction()),
+            catchError(error => of(new DeleteTenantFailureAction(error)))
+          )
+      )
+    ));
 
   constructor(private actions$: Actions,
               private tenantService: TenantService,

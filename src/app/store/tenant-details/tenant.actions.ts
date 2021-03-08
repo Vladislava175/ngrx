@@ -2,7 +2,7 @@ import {Action} from '@ngrx/store';
 import {Obj} from '../../models/obj';
 
 export enum tenantActionsType {
-  getTenant = '[TENANT] set tenant',
+  getTenant = '[TENANT] get tenant',
   getTenantSuccess = '[TENANT] load tenant success',
   getTenantFailure = '[TENANT] load tenant Failure',
   getOrigin = '[TENANT] get origin',
@@ -14,6 +14,27 @@ export enum tenantActionsType {
   createUser = '[TENANT] create User',
   createUserSuccess = '[TENANT] create User success',
   createUserFailure = '[TENANT] create User failure',
+  deleteTenant = '[TENANTS] delete tenant',
+  deleteSuccess = '[TENANTS] delete tenant success',
+  deleteFailure = '[TENANTS] delete tenant',
+}
+
+export class DeleteTenantAction implements Action {
+  readonly type = tenantActionsType.deleteTenant;
+
+  constructor(public payload: { id: number }) {
+  }
+}
+
+export class DeleteTenantSuccessAction implements Action {
+  readonly type = tenantActionsType.deleteSuccess;
+}
+
+export class DeleteTenantFailureAction implements Action {
+  readonly type = tenantActionsType.deleteFailure;
+
+  constructor(public payload: {}) {
+  }
 }
 
 export class CreateTenantAction {
@@ -114,4 +135,7 @@ export type TenantActions =
   | CreateUserAction
   | CreateUserSuccessAction
   | CreateUserFailureAction
+  | DeleteTenantAction
+  | DeleteTenantSuccessAction
+  | DeleteTenantFailureAction
   | GetTenantFailureAction;

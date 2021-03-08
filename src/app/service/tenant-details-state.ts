@@ -1,16 +1,15 @@
 import {Injectable} from '@angular/core';
 import {Store} from '@ngrx/store';
 import {Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
 import {State} from '../store';
-import {FormBuilder} from '@angular/forms';
+import {TenantService} from './tenants.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TenantDetailsState {
 
-  constructor(private store$: Store<State>, private fb: FormBuilder) {
+  constructor(private store$: Store<State>, private service: TenantService) {
   }
 
   getTenantsState(): Observable<any> {
@@ -34,7 +33,8 @@ export class TenantDetailsState {
   }
 
   getTenantById(id: number | string): Observable<any> {
-    return this.getTenantsState()
-      .pipe(map(store => store.tenants.find((f: any) => f.id == id)));
+    /*    return this.getTenantsState()
+          .pipe(map(store => store.tenants.find((f: any) => f.id == id)));*/
+    return this.service.getTenantById(id);
   }
 }

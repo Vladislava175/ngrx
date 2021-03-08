@@ -24,6 +24,7 @@ const initialState: TenantState = {
 
 export const tenantReducer = (state = initialState, action: TenantActions) => {
   debugger
+
   switch (action.type) {
     case tenantActionsType.getTenant:
       return {

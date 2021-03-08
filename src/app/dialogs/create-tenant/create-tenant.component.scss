@@ -1,0 +1,108 @@
+@import 'src/assets/scss/mixins';
+
+:host {
+  .form {
+    display: flex;
+    width: 658px;
+    padding: 30px 14px;
+    @include breakpoint(mobile-max) {
+      flex-direction: column;
+      width: 100%;
+      height: calc(100vh - 250px);
+      overflow: auto;
+      .inputs-container {
+        border-left: none;
+        padding-left: 0;
+        margin-left: 0;
+      }
+    }
+  }
+
+  .inputs-container {
+    padding-left: 40px;
+    border-left: 1px solid rgba(112, 112, 112, 0.2);
+    margin-left: 40px;
+    flex: 0 1 50%;
+
+    .input-wrapper {
+      .mat-form-field {
+        width: 100%;
+      }
+
+      &.email {
+        input {
+          text-align: left;
+        }
+      }
+    }
+  }
+
+  .checkbox-container {
+    display: flex;
+    flex-direction: column;
+    flex: 0 1 50%;
+    padding-top: 15px;
+
+    h2 {
+      font-size: 15px;
+      line-height: 19px;
+      margin: 0 0 20px 0;
+      font-weight: 600;
+    }
+
+    @include breakpoint(mobile-max) {
+      padding-top: 0;
+      h2 {
+        margin: 0 0 5px 0;
+      }
+    }
+  }
+
+  ::ng-deep {
+    .mat-checkbox {
+      margin-bottom: 20px;
+      @include breakpoint(mobile-max) {
+        margin-bottom: 5px;
+      }
+
+      .mat-checkbox-frame {
+        transform: scale(1.1);
+        border-color: #053B59;
+        border-width: 1px;
+        border-radius: 3px;
+      }
+
+      &.mat-checkbox-checked.mat-accent {
+
+        .mat-checkbox-background {
+          background-color: transparent;
+        }
+
+        .mat-checkbox-checkmark-path {
+          stroke: #053B59 !important;
+        }
+      }
+    }
+  }
+
+  .warning {
+    font-size: 15px;
+    line-height: 19px;
+    color: #EF4560;
+    text-align: center;
+    padding: 0 20px;
+    width: 190px;
+    font-weight: 500;
+  }
+
+  .actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.star {
+  color: maroon;
+  margin-right: 1%
+}

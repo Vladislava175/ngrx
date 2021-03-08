@@ -1,5 +1,4 @@
 <button (click)="addTenant()">Add tenant</button>
-<button (click)="deleteTenant()">Delete tenant</button>
 <button (click)="signOut()">logout</button>
 
 <div *ngIf="!(error$ |async)" [class.loading]="loading$ | async">

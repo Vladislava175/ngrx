@@ -5,9 +5,6 @@ export enum tenantsActionsType {
   add = '[TENANTS] add tenant',
   addSuccess = '[TENANTS] add tenant success',
   addFailure = '[TENANTS] add tenant failure',
-  delete = '[TENANTS] delete tenant',
-  deleteSuccess = '[TENANTS] delete tenant success',
-  deleteFailure = '[TENANTS] delete tenant',
   load = '[TENANTS] load tenants Failure',
   loadSuccess = '[TENANTS] load tenants success',
   loadFailure = '[TENANTS] load tenants Failure',
@@ -44,27 +41,6 @@ export class AddTenantFailureAction implements Action {
   }
 }
 
-export class DeleteTenantAction implements Action {
-  readonly type = tenantsActionsType.delete;
-
-  constructor(public payload: { id: number }) {
-  }
-}
-
-export class DeleteTenantSuccessAction implements Action {
-  readonly type = tenantsActionsType.deleteSuccess;
-
-  constructor(public payload: {}) {
-  }
-}
-
-export class DeleteTenantFailureAction implements Action {
-  readonly type = tenantsActionsType.deleteFailure;
-
-  constructor(public payload: {}) {
-  }
-}
-
 export class LoadTenantAction implements Action {
   readonly type = tenantsActionsType.load;
 }
@@ -89,10 +65,7 @@ export type TenantsActions =
   | AddTenantAction
   | AddTenantSuccessAction
   | AddTenantFailureAction
-  | DeleteTenantSuccessAction
-  | DeleteTenantFailureAction
   | LoadTenantAction
   | LoadTenantSuccessAction
   | LoadTenantFailureAction
-  | OpenCreateTenantAction
-  | DeleteTenantAction;
+  | OpenCreateTenantAction;

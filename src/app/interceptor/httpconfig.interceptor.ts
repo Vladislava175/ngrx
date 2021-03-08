@@ -4,11 +4,15 @@ import {HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest,
 import {Observable, throwError} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
 import {StorageService} from '../service/storage.service';
+import {MatDialog} from '@angular/material/dialog';
+import {ErrorDialogComponent} from '../components/error-dialog/error-dialog.component';
 
 
 @Injectable()
 export class HttpConfigInterceptor implements HttpInterceptor {
-  constructor(private storageService: StorageService) {
+  public isDialogOpen: Boolean = false;
+
+  constructor(private storageService: StorageService, private dialog: MatDialog) {
   }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -29,7 +33,25 @@ export class HttpConfigInterceptor implements HttpInterceptor {
         return event;
       }),
       catchError((error: HttpErrorResponse) => {
+        let data = {};
+        console.log(JSON.stringify(error));
+        data = {
+          reason: error && error.message ? error.message : '',
+          status: error.status
+        };
+        this.openDialog(data);
         return throwError(error);
       }));
+  }
+
+  private openDialog(data: any): any {
+    if (this.isDialogOpen) {
+      return false;
+    }
+    this.isDialogOpen = true;
+    this.dialog.open(ErrorDialogComponent, {
+      width: '300px',
+      data: data
+    });
   }
 }

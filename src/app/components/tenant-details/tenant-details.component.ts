@@ -5,6 +5,8 @@ import {TenantState} from '../../store/tenant-details/tenant.reducer';
 import {GetTenantAction} from '../../store/tenant-details/tenant.actions';
 import {Observable} from 'rxjs';
 import {TenantDetailsState} from '../../service/tenant-details-state';
+import {MatDialog} from '@angular/material/dialog';
+import {ClosePopupComponent} from '../../dialogs/close-popup/close-popup.component';
 
 @Component({
   selector: 'app-tenant-details',
@@ -14,9 +16,11 @@ import {TenantDetailsState} from '../../service/tenant-details-state';
 export class TenantDetailsComponent implements OnInit {
 
   tenantHeaderData$: Observable<any> = this.state.getTenantHeaderData();
+  tenantId = null;
 
   constructor(private route: ActivatedRoute,
               private store$: Store<TenantState>,
+              private dialog: MatDialog,
               private state: TenantDetailsState,
               private router: Router) {
 
@@ -24,12 +28,24 @@ export class TenantDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe((p) => {
-      let id = p['id'];
+      let id = p['id'] as string;
+      this.tenantId = p['id'];
       this.store$.dispatch(new GetTenantAction({tenantId: id}));
     });
   }
 
   back() {
-    this.router.navigate(['tenants-list']);
+    this.router.navigate(['../tenants-list']);
+  }
+
+  closePopup() {
+    this.dialog.open(ClosePopupComponent, {
+      data: {
+        tenantId: this.tenantId,
+        remove: 'tenant',
+        userId: null,
+        description: 'אתה בטוח שאתה רוצה למחוק טננט?'
+      }
+    });
   }
 }
