@@ -41,7 +41,8 @@ export class TenantService {
     return this.proxy.get('membership/origins');
   }
 
-  getUsers(id: string) {
+  getUsers(id: any) {
+    debugger
     return this.proxy.get(`membership/tenant/${id}/users`);
   }
 

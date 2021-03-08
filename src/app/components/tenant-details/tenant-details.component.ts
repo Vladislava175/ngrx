@@ -7,6 +7,7 @@ import {Observable} from 'rxjs';
 import {TenantDetailsState} from '../../service/tenant-details-state';
 import {MatDialog} from '@angular/material/dialog';
 import {ClosePopupComponent} from '../../dialogs/close-popup/close-popup.component';
+import {GetUsersAction} from '../../store/users/users.actions';
 
 @Component({
   selector: 'app-tenant-details',
@@ -16,7 +17,7 @@ import {ClosePopupComponent} from '../../dialogs/close-popup/close-popup.compone
 export class TenantDetailsComponent implements OnInit {
 
   tenantHeaderData$: Observable<any> = this.state.getTenantHeaderData();
-  tenantId = null;
+  tenantId = '';
 
   constructor(private route: ActivatedRoute,
               private store$: Store<TenantState>,
@@ -47,5 +48,9 @@ export class TenantDetailsComponent implements OnInit {
         description: 'אתה בטוח שאתה רוצה למחוק טננט?'
       }
     });
+  }
+
+  sendMessage() {
+    this.store$.dispatch(new GetUsersAction(this.tenantId.toString()));
   }
 }
