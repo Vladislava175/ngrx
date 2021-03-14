@@ -33,6 +33,10 @@ export const tenantReducer = (state = initialState, action: TenantActions) => {
         // @ts-ignore
         tenantDetails: [state.tenantDetails[0], state.tenantDetails[1], action.payload.tenantDetails[0], action.payload.tenantDetails[1]]
       };
+    case tenantActionsType.clean:
+      return {
+        ...state = initialState
+      };
     case tenantActionsType.getTenant:
       return {
         ...state,

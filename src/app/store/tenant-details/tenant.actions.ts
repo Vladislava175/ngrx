@@ -20,6 +20,7 @@ export enum tenantActionsType {
   users = '[TENANT] get users',
   usersSuccess = '[TENANT] get users success',
   usersFailure = '[TENANT] get users failure',
+  clean = '[TENANT] clean',
 }
 
 export class GetUsersAction implements Action {
@@ -35,6 +36,11 @@ export class GetUsersSuccessAction implements Action {
 
   constructor(public payload: { users: any[], tenantDetails: any[] }) {
   }
+}
+
+export class CleanAction {
+  readonly type = tenantActionsType.clean;
+
 }
 
 export class GetUsersFailureAction implements Action {
@@ -165,5 +171,6 @@ export type TenantActions =
   | DeleteTenantFailureAction
   | GetUsersAction
   | GetUsersSuccessAction
+  | CleanAction
   | GetUsersFailureAction
   | GetTenantFailureAction;
