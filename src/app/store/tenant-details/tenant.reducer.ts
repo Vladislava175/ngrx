@@ -9,7 +9,8 @@ export interface TenantState {
   error: any,
   origins: [],
   tenantHeaderData: [],
-  tenantDetails: []
+  tenantDetails: [],
+  users: any[]
 }
 
 const initialState: TenantState = {
@@ -19,13 +20,19 @@ const initialState: TenantState = {
   error: undefined,
   origins: [],
   tenantHeaderData: [],
-  tenantDetails: []
+  tenantDetails: [],
+  users: []
 };
 
 export const tenantReducer = (state = initialState, action: TenantActions) => {
-  debugger
-
   switch (action.type) {
+    case tenantActionsType.usersSuccess:
+      return {
+        ...state,
+        users: action.payload.users,
+        // @ts-ignore
+        tenantDetails: [state.tenantDetails[0], state.tenantDetails[1], action.payload.tenantDetails[0], action.payload.tenantDetails[1]]
+      };
     case tenantActionsType.getTenant:
       return {
         ...state,

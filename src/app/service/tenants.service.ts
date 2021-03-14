@@ -21,7 +21,6 @@ export class TenantService {
   }
 
   deleteTenant(id: number) {
-    debugger
     return this.proxy.delete(`membership/tenants/${id}`);
   }
 
@@ -42,7 +41,6 @@ export class TenantService {
   }
 
   getUsers(id: any) {
-    debugger
     return this.proxy.get(`membership/tenant/${id}/users`);
   }
 
@@ -55,10 +53,6 @@ export class TenantService {
   }
 
   getTenantById(id: any) {
-    /*    return this.tenants$.pipe(
-          mergeAll(),
-          find(output => output.id === id)
-        );*/
     return this.proxy.get(`membership/tenants/${id}`).pipe(
       delay(500)
     );

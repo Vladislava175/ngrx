@@ -1,9 +1,7 @@
 <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" id="bootstrap-css"
       rel="stylesheet">
 <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
-<button (click)="back()">back to list</button>
 <mat-card class="card company-details">
   <dt>
     <div class="header-wrapper align-center">
@@ -36,7 +34,10 @@
 <nav class="navbar navbar-fixed-top navbar-dark bg-inverse">
   <div class="container">
     <ul class="nav navbar-nav" routerLinkActive="active">
-      <li class="nav-item"><a class="nav-link" routerLink="users">משתמשים</a></li>
+      <li class="nav-item">
+        <button (click)="back()">back to list</button>
+      </li>
+      <li class="nav-item"><a (click)="state.getUsers(tenantId)" class="nav-link" routerLink="users">משתמשים</a></li>
       <li class="nav-item"><a class="nav-link" routerLink="pay-card">אמצעי תשלום</a></li>
       <li class="nav-item"><a class="nav-link" routerLink="packages">קופונים</a></li>
       <li class="nav-item"><a class="nav-link" routerLink="payments">תשלומים\חיובים</a></li>

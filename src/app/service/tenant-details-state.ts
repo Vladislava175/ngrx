@@ -33,8 +33,10 @@ export class TenantDetailsState {
   }
 
   getTenantById(id: number | string): Observable<any> {
-    /*    return this.getTenantsState()
-          .pipe(map(store => store.tenants.find((f: any) => f.id == id)));*/
     return this.service.getTenantById(id);
+  }
+
+  getUsers(tenantId: string): Observable<any> {
+    return this.service.getUsers(tenantId);
   }
 }

@@ -3,7 +3,6 @@ import {Actions, createEffect, Effect, ofType} from '@ngrx/effects';
 import {
   CreateTenantFailureAction,
   CreateTenantSuccessAction,
-  CreateUserAction,
   CreateUserFailureAction,
   CreateUserSuccessAction,
   DeleteTenantFailureAction,
@@ -12,6 +11,8 @@ import {
   GetOriginSuccessAction,
   GetTenantFailureAction,
   GetTenantSuccessAction,
+  GetUsersFailureAction,
+  GetUsersSuccessAction,
   tenantActionsType
 } from './tenant.actions';
 import {catchError, map, mergeMap} from 'rxjs/operators';
@@ -19,6 +20,7 @@ import {of} from 'rxjs';
 import {GetTenantsAction} from '../tenants/tenants.actions';
 import {TenantService} from '../../service/tenants.service';
 import {TenantDetailsState} from '../../service/tenant-details-state';
+import {MatDialog} from '@angular/material/dialog';
 
 @Injectable()
 export class TenantEffects {
@@ -43,6 +45,7 @@ export class TenantEffects {
           catchError(error => of(new GetTenantFailureAction(error)))
         ))
     );
+
   loadOrigin$ = createEffect(() => this.actions$
     .pipe(
       ofType<GetTenantsAction>(tenantActionsType.getOrigin),
@@ -74,11 +77,13 @@ export class TenantEffects {
     ));
   createUser$ = createEffect(() => this.actions$
     .pipe(
-      ofType<CreateUserAction>(tenantActionsType.createUser),
+      ofType(tenantActionsType.createUser),
+      // map((st: any) => st['creation_date'] = new Date()),
       mergeMap(
         (state: any) => this.tenantService.addUser(state.payload.user, state.payload.tenantId)
           .pipe(
-            map(() => {
+            map((res) => {
+              this.dialog.closeAll();
               return new CreateUserSuccessAction();
             }),
             catchError(error => of(new CreateUserFailureAction(error)))
@@ -91,13 +96,36 @@ export class TenantEffects {
       mergeMap(
         (data: any) => this.tenantService.deleteTenant(data.payload)
           .pipe(
-            map(() => new DeleteTenantSuccessAction()),
+            map(() => {
+              this.dialog.closeAll();
+              return new DeleteTenantSuccessAction();
+            }),
             catchError(error => of(new DeleteTenantFailureAction(error)))
           )
       )
     ));
 
+  loadUsers$ = createEffect(() => this.actions$
+    .pipe(
+      ofType(tenantActionsType.users, tenantActionsType.getTenantSuccess),
+      mergeMap(
+        (data: any) => this.tenantService.getUsers(data.payload.tenant.id)
+          .pipe(
+            map((data: any) => {
+              let response = data.reverse();
+              let td = [
+                {title: 'דואר אלקטרוני', value: response[0].username},
+                {title: 'טלפון נייד', value: response[0].phone}
+              ];
+              return new GetUsersSuccessAction({users: response, tenantDetails: td});
+            }),
+            catchError(error => of(new GetUsersFailureAction(error)))
+          )
+      ),
+    ));
+
   constructor(private actions$: Actions,
+              private dialog: MatDialog,
               private tenantService: TenantService,
               private state: TenantDetailsState) {
   }

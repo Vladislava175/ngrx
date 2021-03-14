@@ -21,7 +21,6 @@ export class ClosePopupComponent implements OnInit {
   }
 
   delete(id: number, userId: number, remove: string) {
-    debugger
     if (remove == 'tenant') {
       this.store$.dispatch(new DeleteTenantAction(this.data.tenantId));
 

@@ -2,12 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
 import {ActivatedRoute, Router} from '@angular/router';
 import {TenantState} from '../../store/tenant-details/tenant.reducer';
-import {GetTenantAction} from '../../store/tenant-details/tenant.actions';
+import {GetTenantAction, GetUsersAction} from '../../store/tenant-details/tenant.actions';
 import {Observable} from 'rxjs';
 import {TenantDetailsState} from '../../service/tenant-details-state';
 import {MatDialog} from '@angular/material/dialog';
 import {ClosePopupComponent} from '../../dialogs/close-popup/close-popup.component';
-import {GetUsersAction} from '../../store/users/users.actions';
 
 @Component({
   selector: 'app-tenant-details',
@@ -22,7 +21,7 @@ export class TenantDetailsComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private store$: Store<TenantState>,
               private dialog: MatDialog,
-              private state: TenantDetailsState,
+              public state: TenantDetailsState,
               private router: Router) {
 
   }
@@ -53,4 +52,5 @@ export class TenantDetailsComponent implements OnInit {
   sendMessage() {
     this.store$.dispatch(new GetUsersAction(this.tenantId.toString()));
   }
+
 }

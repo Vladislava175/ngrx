@@ -82,15 +82,16 @@ export class CreateTenantComponent implements OnInit {
 
   saveUser() {
     let tenantId$ = this.store$.pipe(select(selectTenantId));
-
     const u = this.userForm.getRawValue();
     let user = {
       'username': u.mail,
       'phone': u.phone,
+      'password': 'string',
       'first_name': u.userName,
       'last_name': u.lastName,
       'status': '1',
-      'is_asked_to_forward_sms': true
+      'creation_date': '2021-02-07T09:34:10',
+      'is_asked_to_forward_sms': false
     };
 
 

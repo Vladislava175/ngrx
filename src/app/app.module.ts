@@ -33,7 +33,6 @@ import {TenantDetailsState} from './service/tenant-details-state';
 import {BoolPipe} from './shared/bool.pipe';
 import {ErrorDialogComponent} from './components/error-dialog/error-dialog.component';
 import {ClosePopupComponent} from './dialogs/close-popup/close-popup.component';
-import {UsersEffects} from './store/users/users.effects';
 
 
 @NgModule({
@@ -71,7 +70,7 @@ import {UsersEffects} from './store/users/users.effects';
 
     HttpClientModule,
     StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
-    EffectsModule.forRoot([TenantsEffects, TenantEffects, UsersEffects]),
+    EffectsModule.forRoot([TenantsEffects, TenantEffects]),
     StoreRouterConnectingModule.forRoot(),
     BrowserAnimationsModule,
     MaterialModule,

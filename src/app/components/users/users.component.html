@@ -1,1 +1,50 @@
-<p>users works!</p>
+<!--<div *ngIf="tenantState.usersTableData.length > 0" class='btn-wrapper submit'>
+  <button (click)="openClosePopup(tenantState.tenant.id)" style="margin-left: 1%; background: darkred;">מחיקת משתמש
+  </button>
+</div>
+<div *ngIf="tenantState.usersTableData.length == 0" class='btn-wrapper submit'>
+  <button (click)="tenantState.openDialogCreate()" style="margin-left: 1%; background: #075F8F;">הוספת משתמש</button>
+</div>-->
+<div class="table-wrapper">
+  <table [dataSource]="dataSource" class="table desktop" mat-table matSort>
+
+    <ng-container matColumnDef="mail">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header>דוא"ל</th>
+      <td *matCellDef="let element" mat-cell> {{element.username}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header>שם</th>
+      <td *matCellDef="let element" mat-cell> {{element.first_name}} {{'  '}}{{element.last_name}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="addPackage">
+      <th *matHeaderCellDef mat-header-cell>הרשאה להוסיף מנויים</th>
+      <td *matCellDef="let element" mat-cell></td>
+    </ng-container>
+
+    <ng-container matColumnDef="editPackage">
+      <th *matHeaderCellDef mat-header-cell>הרשאה לערוך מנויים</th>
+      <td *matCellDef="let element" mat-cell></td>
+
+    </ng-container>
+
+    <ng-container matColumnDef="editUsers">
+      <th *matHeaderCellDef mat-header-cell>הרשאה לערוך אמצעי תשלום וחבילה</th>
+      <td *matCellDef="let element" mat-cell></td>
+    </ng-container>
+
+    <ng-container matColumnDef="editPayment">
+      <th *matHeaderCellDef mat-header-cell>הרשאה לערוך אמצעי תשלום וחבילה</th>
+      <td *matCellDef="let element" mat-cell></td>
+    </ng-container>
+    <tr *matHeaderRowDef="displayedColumns" mat-header-row
+    ></tr>
+    <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+
+  </table>
+</div>
+<mat-paginator [pageSizeOptions]="[5, 10, 25, 50]"
+               [pageSize]="5">
+</mat-paginator>
