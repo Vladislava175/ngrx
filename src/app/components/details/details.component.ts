@@ -19,7 +19,6 @@ export class DetailsComponent implements OnInit {
               private store$: Store<TenantState>,
               private state: TenantDetailsState) {
     /*    this.route.parent?.params.subscribe(params => {
-          debugger
           this.store$.dispatch(new GetTenantAction({tenantId: params.id}));
         });*/
   }

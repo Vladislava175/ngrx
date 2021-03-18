@@ -69,10 +69,14 @@ export const tenantReducer = (state = initialState, action: TenantActions) => {
       return {
         ...state,
         tenant: {
+          ...state.tenant,
           ['name']: action.payload.name,
           ['business_id']: action.payload.business_id,
           ['status']: action.payload.status.id
-        }
+        },
+        tenantHeaderData: [...state.tenantHeaderData, [
+          {title: 'מס ח.פ.', value: action.payload.business_id},
+          {title: 'סטטוס', value: action.payload.status.name}]]
       };
     case tenantActionsType.createTenantFailure:
       return {

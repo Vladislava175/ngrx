@@ -34,12 +34,14 @@ export class EditTenantComponent implements OnInit {
   }
 
   submit() {
+    let status = this.state.statuses.find(f => f.id == this.state.tenantForm.value.status);
     let tenant = {
       id: this.state.tenantForm.value.id,
       business_id: this.state.tenantForm.value.businessCode,
       name: this.state.tenantForm.value.name,
       status: {
-        id: this.state.tenantForm.value.status
+        id: status?.id,
+        name: status?.name
       }
     };
     this.store$.dispatch(new UpdateTenantAction(tenant));

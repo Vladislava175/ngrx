@@ -57,7 +57,6 @@ export class TenantDetailsComponent implements OnInit, OnDestroy {
 
   sendMessage() {
     this.store$.pipe(select(selectUsers)).subscribe((users: any) => {
-      debugger
       for (let u of users) {
         this.store$.dispatch(new SendMessageAction({tenantId: this.tenantId.toString(), userId: u.id}));
       }
