@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {TenantDetailsState} from '../../service/tenant-details-state';
 import {MAT_DIALOG_DATA} from '@angular/material/dialog';
-import {GetOriginAction} from '../../store/tenant-details/tenant.actions';
+import {GetOriginAction, UpdateTenantAction} from '../../store/tenant-details/tenant.actions';
 import {select, Store} from '@ngrx/store';
 import {TenantState} from '../../store/tenant-details/tenant.reducer';
 import {selectTenant} from '../../store/tenant-details/tenant-selectors';
@@ -34,7 +34,15 @@ export class EditTenantComponent implements OnInit {
   }
 
   submit() {
-
+    let tenant = {
+      id: this.state.tenantForm.value.id,
+      business_id: this.state.tenantForm.value.businessCode,
+      name: this.state.tenantForm.value.name,
+      status: {
+        id: this.state.tenantForm.value.status
+      }
+    };
+    this.store$.dispatch(new UpdateTenantAction(tenant));
   }
 
 }

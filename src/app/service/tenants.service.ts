@@ -32,8 +32,8 @@ export class TenantService {
     return this.proxy.post('membership/tenants', JSON.stringify(tenant));
   }
 
-  updateTenant(id: string, tenant: any) {
-    return this.proxy.patch(`membership/tenants/${id}`, JSON.stringify(tenant));
+  updateTenant(tenant: any) {
+    return this.proxy.patch(`membership/tenants/${tenant.id}`, JSON.stringify(tenant));
   }
 
   getOrigins() {
