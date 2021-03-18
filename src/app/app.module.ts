@@ -33,6 +33,7 @@ import {TenantDetailsState} from './service/tenant-details-state';
 import {BoolPipe} from './shared/bool.pipe';
 import {ErrorDialogComponent} from './components/error-dialog/error-dialog.component';
 import {ClosePopupComponent} from './dialogs/close-popup/close-popup.component';
+import {EditTenantComponent} from './dialogs/edit-tenant/edit-tenant.component';
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import {ClosePopupComponent} from './dialogs/close-popup/close-popup.component';
     CreateTenantComponent,
     ErrorDialogComponent,
     // pipe
-    BoolPipe
+    BoolPipe,
+    EditTenantComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,43 @@
+<div class="alert-container">
+  <form (ngSubmit)="submit()"
+        *ngIf="tenant$ | async"
+        [formGroup]="state.tenantForm" class='form'>
+    <div class="inputs-container">
+      <div class="input-wrapper last-name">
+        <mat-form-field>
+          <mat-label>מס ח.פ.</mat-label>
+          <input formControlName="businessCode" matInput type="number">
+
+        </mat-form-field>
+      </div>
+      <div class="input-wrapper email">
+        <mat-form-field>
+          <mat-label>שם בנק מצרף</mat-label>
+          <mat-select formControlName="origin">
+            <mat-option *ngFor="let origin of  origins$ | async"
+                        [value]="origin.id">{{origin.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="input-wrapper email">
+        <mat-form-field>
+          <mat-label>סטטוס טננט</mat-label>
+          <mat-select formControlName="status">
+            <mat-option *ngFor="let status of state.statuses"
+                        [value]="status.id">{{status.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="input-wrapper last-name">
+        <mat-form-field>
+          <mat-label>שם הלקוח</mat-label>
+          <input formControlName="name" matInput>
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+</div>
+<mat-dialog-actions class='actions'>
+  <button [mat-dialog-close]="true" class='btn transparent'>ביטול</button>
+  <button (click)="submit()" class='btn transparent'>אישור</button>
+</mat-dialog-actions>

@@ -1,7 +1,7 @@
 <div class="alert-container">
   <div class='form'>
     <form *ngIf="!(disableUser$ | async)"
-          [formGroup]="tenantForm"
+          [formGroup]="state.tenantForm"
           class="inputs-container">
       <div class="input-wrapper last-name">
         <mat-form-field>

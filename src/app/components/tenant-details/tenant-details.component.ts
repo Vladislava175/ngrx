@@ -8,6 +8,7 @@ import {TenantDetailsState} from '../../service/tenant-details-state';
 import {MatDialog} from '@angular/material/dialog';
 import {ClosePopupComponent} from '../../dialogs/close-popup/close-popup.component';
 import {selectUsers} from '../../store/tenant-details/tenant-selectors';
+import {EditTenantComponent} from '../../dialogs/edit-tenant/edit-tenant.component';
 
 @Component({
   selector: 'app-tenant-details',
@@ -63,4 +64,7 @@ export class TenantDetailsComponent implements OnInit, OnDestroy {
     });
   }
 
+  openDialogEditTenant() {
+    this.dialog.open(EditTenantComponent);
+  }
 }

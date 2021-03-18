@@ -1,4 +1,50 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+@import 'assets/scss/_fonts.scss';
+@import 'assets/scss/_mixins.scss';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$silvernet-primary: mat-palette($mat-indigo);
+$silvernet-accent: mat-palette($mat-pink, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$silvernet-warn: mat-palette($mat-red);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$silvernet-theme: mat-light-theme((
+  color: (
+    primary: $silvernet-primary,
+    accent: $silvernet-accent,
+    warn: $silvernet-warn,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($silvernet-theme);
+
 /* You can add global styles to this file, and also import other style files */
+* {
+  box-sizing: border-box;
+  font-family: "Assistant" !important;
+  outline-offset: 2px;
+}
+
+html {
+  scroll-behavior: smooth;
+  direction: rtl;
+}
 
 html, body {
   height: 100%;
@@ -6,7 +52,240 @@ html, body {
 
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: 'Assistant';
 }
 
-@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+// General
+button {
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  line-height: 23px;
+  cursor: pointer;
+
+  &.btn {
+    font-weight: 600;
+    border-radius: 100px;
+    padding: 8px 25px;
+
+    &.primary {
+      background-color: #075F8F;
+      border: 1px solid #075F8F;
+      color: #fff;
+
+      &:hover {
+        background-color: #064D74;
+      }
+
+      &:disabled {
+        background-color: #DDD;
+        border: 1px solid #DDD;
+        cursor: not-allowed;
+      }
+    }
+
+    &.secondary {
+      background-color: rgba(0, 0, 0, 0);
+      color: #075F8F;
+      border: 1px solid #075F8F;
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.06);
+      }
+    }
+
+    &.transparent {
+      border-radius: 0;
+      border: 1px solid transparent;
+      color: #4C4C4C;
+      font-size: 18px;
+      line-height: 23px;
+      color: #075F8F
+    }
+
+    &.red {
+      background-color: #EF4560;
+      border: 1px solid #EF4560;
+      color: #fff;
+
+      &:hover {
+        background-color: #D12C46;
+      }
+
+      &:disabled {
+        background-color: #DDD;
+        border: 1px solid #DDD;
+      }
+    }
+  }
+
+  .icon {
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 15px;
+    width: 15px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 5px;
+
+    &.arrow-left {
+      background-image: url('/assets/icons/arrow-left.svg');
+    }
+
+    &.three-dots {
+      background-image: url('/assets/icons/arrow-left.svg');
+    }
+
+    &.download {
+      background-image: url('/assets/icons/download.svg');
+    }
+
+    &.close-dialog {
+      background-image: url('/assets/icons/x-dialog.svg');
+    }
+
+    &.envelope {
+      background-image: url('/assets/icons/mail.svg');
+    }
+
+    &.printer {
+      background-image: url('/assets/icons/printer.svg');
+    }
+  }
+
+  .plus-sign {
+    position: relative;
+    top: 2px;
+  }
+}
+
+.display-button-as-link {
+  padding: 0;
+  display: inline;
+  color: #075F8F;
+  font-weight: 400;
+  font-size: 17px;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.icon {
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 15px;
+  width: 15px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 0;
+
+  &.download {
+    background-image: url('/assets/icons/download.svg');
+  }
+
+  &.check-green {
+    background-image: url('/assets/icons/check-green.svg');
+  }
+
+  &.x {
+    background-image: url('/assets/icons/x-icon.svg');
+  }
+}
+
+.flex {
+  display: flex;
+}
+
+.justify {
+  &-between {
+    justify-content: space-between;
+  }
+
+  &-center {
+    justify-content: center;
+  }
+
+  &-start {
+
+    justify-content: flex-start;
+  }
+
+  &-end {
+    justify-content: flex-end;
+  }
+}
+
+.align {
+  &-center {
+    align-items: center;
+  }
+}
+
+.separator {
+  width: 1px;
+  height: 31px;
+  background-color: rgba(255, 255, 255, 0.35);
+}
+
+.link-btn {
+  display: inline-flex;
+  align-items: center;
+  color: #873D4C;
+  font-size: 18px;
+  line-height: 22px;
+  text-decoration: none;
+
+  &:hover {
+    color: #C35B70;
+  }
+
+  .icon {
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 15px;
+    width: 15px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 5px;
+    margin-top: 1px;
+
+    &.share {
+      background-image: url('/assets/icons/share-square-icon.svg');
+    }
+
+    &.arrow {
+      background-image: url('/assets/icons/arrow-icon.svg');
+    }
+  }
+}
+
+.plus-sign {
+  position: relative;
+  top: 2px;
+}
+
+.header-wrapper {
+  margin-bottom: 25px;
+}
+
+.page-title {
+  font-size: 30px;
+  line-height: 40px;
+  font-weight: 500;
+  margin: 0;
+  color: #003553;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  @include breakpoint(tablet-max) {
+    font-size: 25px;
+    line-height: 33px;
+  }
+
+  &:focus {
+    outline: 1px solid rgba(76, 93, 149, 0.4);
+  }
+}

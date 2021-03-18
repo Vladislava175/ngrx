@@ -19,7 +19,6 @@ import {selectTenantId} from '../../store/tenant-details/tenant-selectors';
 })
 export class CreateTenantComponent implements OnInit {
   origins$: Observable<any[]> = this.state.getOrigins();
-  tenantForm!: FormGroup;
   userForm: FormGroup = new FormGroup({});
   public disableUser$: Observable<boolean> = this.state.getTenantId().pipe(map(tenantId => tenantId !== undefined));
 
@@ -37,19 +36,10 @@ export class CreateTenantComponent implements OnInit {
 
   ngOnInit(): void {
     this.store$.dispatch(new GetOriginAction());
-    this.initTenant();
+    this.state.initTenant();
     this.initUser();
   }
 
-  initTenant() {
-    this.tenantForm = this.fb.group({
-      id: [''],
-      name: ['', [Validators.required, validateWhitespace]],
-      status: [''],
-      origin: ['', [Validators.required]],
-      businessCode: ['', [Validators.required]]
-    });
-  }
 
   initUser() {
     this.userForm = this.fb.group({
@@ -61,7 +51,7 @@ export class CreateTenantComponent implements OnInit {
   }
 
   saveTenant() {
-    const t = this.tenantForm.getRawValue();
+    const t = this.state.tenantForm.getRawValue();
     let tenant = {
       name: t.name,
       country: {
