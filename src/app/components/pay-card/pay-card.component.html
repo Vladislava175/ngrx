@@ -1,1 +1,29 @@
-<p>pay-card works!</p>
+<mat-card class="card company-details">
+  <dl>
+    <div class="dl-wrapper">
+      <dt>אמצעי תשלום הוסדר</dt>
+      <dd>כרטיב אשראי</dd>
+    </div>
+    <dt>
+      <div class='btn-wrapper submit'>
+        <button style="margin-left: 1%; color: #075F8F;">עריכת אמצעי תשלום</button>
+      </div>
+
+    </dt>
+    <dt>
+      <div class='btn-wrapper submit'>
+        <button style="margin-left: 1%; color: #075F8F;">אישור קבלת מידע ללא תשלום</button>
+      </div>
+
+    </dt>
+  </dl>
+</mat-card>
+
+<mat-card class="card company-details">
+  <dl>
+    <div *ngFor='let item of paymentDetails' class="dl-wrapper">
+      <dt>{{item.title}}</dt>
+      <dd>{{item.value}}</dd>
+    </div>
+  </dl>
+</mat-card>

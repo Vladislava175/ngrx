@@ -1,1 +1,60 @@
-<p>payments works!</p>
+<div class="table-wrapper">
+  <table [dataSource]="dataSource" class="table desktop" mat-table matSort>
+    <ng-container matColumnDef="select">
+      <th *matHeaderCellDef mat-header-cell>
+        <mat-checkbox (change)="$event ? masterToggle() : null"
+                      [checked]="selection.hasValue() && isAllSelected()"
+                      [indeterminate]="selection.hasValue() && !isAllSelected()">
+        </mat-checkbox>
+      </th>
+      <td *matCellDef="let row" mat-cell>
+        <mat-checkbox (change)="$event ? selection.toggle(row) : null"
+                      (click)="$event.stopPropagation()"
+                      [checked]="selection.isSelected(row)">
+        </mat-checkbox>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="date">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header>תאריך חיוב</th>
+      <td *matCellDef="let element" mat-cell> {{element.date}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="package">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header>תיאור</th>
+      <td *matCellDef="let element" mat-cell> {{element.package}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="bill">
+      <th *matHeaderCellDef mat-header-cell>סכום</th>
+      <td *matCellDef="let element" mat-cell> {{element.bill}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="paidUp">
+      <th *matHeaderCellDef mat-header-cell>שולם</th>
+      <td *matCellDef="let element" mat-cell> {{element.paidUp}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="datePaidUp">
+      <th *matHeaderCellDef mat-header-cell>תאריך תשלום</th>
+      <td *matCellDef="let element" mat-cell> {{element.datePaidUp}} </td>
+
+    </ng-container>
+
+    <ng-container matColumnDef="number">
+      <th *matHeaderCellDef mat-header-cell>אמצעי תשלום</th>
+      <td *matCellDef="let element" mat-cell> {{element.number}} </td>
+    </ng-container>
+    <ng-container matColumnDef="check">
+      <th *matHeaderCellDef mat-header-cell>קבלה</th>
+      <td *matCellDef="let element" mat-cell> {{element.check}} </td>
+    </ng-container>
+    <tr *matHeaderRowDef="displayedColumns" mat-header-row
+    ></tr>
+    <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+
+  </table>
+</div>
+<mat-paginator [pageSizeOptions]="[5, 10, 25, 50]"
+               [pageSize]="5">
+</mat-paginator>

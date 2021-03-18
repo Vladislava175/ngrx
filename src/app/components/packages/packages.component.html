@@ -1,1 +1,62 @@
-<p>packages works!</p>
+<div class='btn-wrapper submit'>
+  <button (click)="openDialog()" style="margin-left: 1%; background-color: #075F8F;">הוספת קופון ללקוח</button>
+</div>
+
+
+<!-- table -->
+<div class="table-wrapper">
+  <table [dataSource]="dataSource" class="table desktop" mat-table matSort>
+    <ng-container matColumnDef="select">
+      <th *matHeaderCellDef mat-header-cell>
+        <mat-checkbox (change)="$event ? masterToggle() : null"
+                      [checked]="selection.hasValue() && isAllSelected()"
+                      [indeterminate]="selection.hasValue() && !isAllSelected()">
+        </mat-checkbox>
+      </th>
+      <td *matCellDef="let row" mat-cell>
+        <mat-checkbox (change)="$event ? selection.toggle(row) : null"
+                      (click)="$event.stopPropagation()"
+                      [checked]="selection.isSelected(row)">
+        </mat-checkbox>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header>שם</th>
+      <td *matCellDef="let element" mat-cell> {{element.name}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="sale">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header>סוג ההנחה</th>
+      <td *matCellDef="let element" mat-cell> {{element.sale}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="cash">
+      <th *matHeaderCellDef mat-header-cell>סכום\אחוז ההנחה</th>
+      <td *matCellDef="let element" mat-cell> {{element.cash}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="validity">
+      <th *matHeaderCellDef mat-header-cell>תוקף קופון</th>
+      <td *matCellDef="let element" mat-cell> {{element.validity}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="completed">
+      <th *matHeaderCellDef mat-header-cell>יישמות</th>
+      <td *matCellDef="let element" mat-cell> {{element.completed}} </td>
+
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <th *matHeaderCellDef mat-header-cell>סטטוס</th>
+      <td *matCellDef="let element" mat-cell> {{element.status}} </td>
+    </ng-container>
+    <tr *matHeaderRowDef="displayedColumns" mat-header-row
+    ></tr>
+    <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+
+  </table>
+</div>
+<mat-paginator [pageSizeOptions]="[5, 10, 25, 50]"
+               [pageSize]="5">
+</mat-paginator>
