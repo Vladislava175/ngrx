@@ -21,10 +21,35 @@ export enum tenantActionsType {
   usersSuccess = '[TENANT] get users success',
   usersFailure = '[TENANT] get users failure',
   clean = '[TENANT] clean',
+  sendMessage = '[TENANT] send message',
+  sendMessageSuccess = '[TENANT] send message success',
+  sendMessageFailure = '[TENANT] send message failure',
+
 }
 
 export class GetUsersAction implements Action {
   readonly type = tenantActionsType.users;
+
+  constructor(public payload: string) {
+  }
+}
+
+export class SendMessageAction implements Action {
+  readonly type = tenantActionsType.sendMessage;
+
+  constructor(public payload: any) {
+  }
+}
+
+export class SendMessageSuccessAction implements Action {
+  readonly type = tenantActionsType.sendMessageSuccess;
+
+  constructor() {
+  }
+}
+
+export class SendMessageFailureAction implements Action {
+  readonly type = tenantActionsType.sendMessageFailure;
 
   constructor(public payload: string) {
   }
@@ -173,4 +198,7 @@ export type TenantActions =
   | GetUsersSuccessAction
   | CleanAction
   | GetUsersFailureAction
+  | SendMessageAction
+  | SendMessageSuccessAction
+  | SendMessageFailureAction
   | GetTenantFailureAction;

@@ -13,6 +13,8 @@ import {
   GetTenantSuccessAction,
   GetUsersFailureAction,
   GetUsersSuccessAction,
+  SendMessageFailureAction,
+  SendMessageSuccessAction,
   tenantActionsType
 } from './tenant.actions';
 import {catchError, map, mergeMap} from 'rxjs/operators';
@@ -120,6 +122,19 @@ export class TenantEffects {
               return new GetUsersSuccessAction({users: response, tenantDetails: td});
             }),
             catchError(error => of(new GetUsersFailureAction(error)))
+          )
+      ),
+    ));
+  sendMessage = createEffect(() => this.actions$
+    .pipe(
+      ofType(tenantActionsType.sendMessage),
+      mergeMap(
+        (data: any) => this.tenantService.sendMessage(data.payload.tenantId, data.payload.userId, {})
+          .pipe(
+            map(() => {
+              return new SendMessageSuccessAction();
+            }),
+            catchError(error => of(new SendMessageFailureAction(error)))
           )
       ),
     ));

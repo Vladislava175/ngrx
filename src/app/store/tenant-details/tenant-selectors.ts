@@ -8,4 +8,6 @@ export const selectTenantId = createSelector(
   (state: TenantState): number => state.tenant?.id);
 
 
-
+export const selectUsers = createSelector(
+  selectTenantFeature,
+  (state: TenantState): any[] => state.users);
