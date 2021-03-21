@@ -19,6 +19,10 @@
             <mat-label>שם חברה</mat-label>
             <input formControlName="name" matInput>
           </mat-form-field>
+          <button (click)="addTenant()" class='btn primary' style="margin-left: 1%;">הוספת לקוח</button>
+          <button (click)="exportExcel()" class='btn primary' style="margin-left: 1%;">EXCEL</button>
+          <button (click)="downloadPDF()" class='btn primary' style="margin-left: 1%;">PDF</button>
+
         </div>
       </div>
       <div class='btn-wrapper submit'>

@@ -60,11 +60,8 @@ export class TenantsListComponent implements OnInit, AfterViewInit {
     });
   }
 
-  signOut() {
-    this.authService.signOut();
-  }
-
   displayTable() {
     console.log();
   }
+
 }

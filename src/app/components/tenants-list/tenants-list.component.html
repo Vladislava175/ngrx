@@ -1,9 +1,8 @@
 <app-search (tableChange)="displayTable()"></app-search>
 
-
 <div *ngIf="!(error$ |async)" [class.loading]="loading$ | async">
 
-  <table [dataSource]="state.dataSource" class="mat-elevation-z8" mat-table matSort>
+  <table [dataSource]="state.dataSource" class="mat-elevation-z8" id="my-table" mat-table matSort>
 
     <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->
