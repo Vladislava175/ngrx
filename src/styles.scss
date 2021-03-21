@@ -104,55 +104,8 @@ button {
       color: #075F8F
     }
 
-    &.red {
-      background-color: #EF4560;
-      border: 1px solid #EF4560;
-      color: #fff;
-
-      &:hover {
-        background-color: #D12C46;
-      }
-
-      &:disabled {
-        background-color: #DDD;
-        border: 1px solid #DDD;
-      }
-    }
   }
 
-  .icon {
-    background-size: contain;
-    background-repeat: no-repeat;
-    height: 15px;
-    width: 15px;
-    display: inline-block;
-    vertical-align: middle;
-    margin-left: 5px;
-
-    &.arrow-left {
-      background-image: url('/assets/icons/arrow-left.svg');
-    }
-
-    &.three-dots {
-      background-image: url('/assets/icons/arrow-left.svg');
-    }
-
-    &.download {
-      background-image: url('/assets/icons/download.svg');
-    }
-
-    &.close-dialog {
-      background-image: url('/assets/icons/x-dialog.svg');
-    }
-
-    &.envelope {
-      background-image: url('/assets/icons/mail.svg');
-    }
-
-    &.printer {
-      background-image: url('/assets/icons/printer.svg');
-    }
-  }
 
   .plus-sign {
     position: relative;
@@ -230,38 +183,6 @@ button {
   background-color: rgba(255, 255, 255, 0.35);
 }
 
-.link-btn {
-  display: inline-flex;
-  align-items: center;
-  color: #873D4C;
-  font-size: 18px;
-  line-height: 22px;
-  text-decoration: none;
-
-  &:hover {
-    color: #C35B70;
-  }
-
-  .icon {
-    background-size: contain;
-    background-repeat: no-repeat;
-    height: 15px;
-    width: 15px;
-    display: inline-block;
-    vertical-align: middle;
-    margin-right: 5px;
-    margin-top: 1px;
-
-    &.share {
-      background-image: url('/assets/icons/share-square-icon.svg');
-    }
-
-    &.arrow {
-      background-image: url('/assets/icons/arrow-icon.svg');
-    }
-  }
-}
-
 .plus-sign {
   position: relative;
   top: 2px;
@@ -269,23 +190,4 @@ button {
 
 .header-wrapper {
   margin-bottom: 25px;
-}
-
-.page-title {
-  font-size: 30px;
-  line-height: 40px;
-  font-weight: 500;
-  margin: 0;
-  color: #003553;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  @include breakpoint(tablet-max) {
-    font-size: 25px;
-    line-height: 33px;
-  }
-
-  &:focus {
-    outline: 1px solid rgba(76, 93, 149, 0.4);
-  }
 }

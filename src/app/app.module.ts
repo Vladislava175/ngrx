@@ -34,6 +34,8 @@ import {BoolPipe} from './shared/bool.pipe';
 import {ErrorDialogComponent} from './components/error-dialog/error-dialog.component';
 import {ClosePopupComponent} from './dialogs/close-popup/close-popup.component';
 import {EditTenantComponent} from './dialogs/edit-tenant/edit-tenant.component';
+import {SearchComponent} from './components/search/search.component';
+import {HeaderComponent} from './components/header/header.component';
 
 
 @NgModule({
@@ -50,10 +52,12 @@ import {EditTenantComponent} from './dialogs/edit-tenant/edit-tenant.component';
     PaymentsComponent,
     DetailsComponent,
     CreateTenantComponent,
+    HeaderComponent,
     ErrorDialogComponent,
     // pipe
     BoolPipe,
-    EditTenantComponent
+    EditTenantComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {TenantDetailsState} from '../../service/tenant-details-state';
 import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {GetOriginAction, UpdateTenantAction} from '../../store/tenant-details/tenant.actions';
@@ -12,7 +12,7 @@ import {tap} from 'rxjs/operators';
   templateUrl: './edit-tenant.component.html',
   styleUrls: ['./edit-tenant.component.scss']
 })
-export class EditTenantComponent implements OnInit {
+export class EditTenantComponent implements OnInit, OnDestroy {
   origins$ = this.state.getOrigins();
   tenant$ = this.store$.pipe(select(selectTenant))
     .pipe(tap(t => this.state.tenantForm.patchValue({
@@ -31,6 +31,11 @@ export class EditTenantComponent implements OnInit {
   ngOnInit(): void {
     this.store$.dispatch(new GetOriginAction());
     this.state.initTenant();
+    this.state.tenantForm.controls['origin'].disable();
+  }
+
+  ngOnDestroy(): void {
+    this.state.tenantForm.controls['origin'].enable();
   }
 
   submit() {

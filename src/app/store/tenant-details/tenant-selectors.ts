@@ -15,3 +15,6 @@ export const selectUsers = createSelector(
 export const selectTenant = createSelector(
   selectTenantFeature,
   (state: TenantState): Tenant => state.tenant);
+export const selectTenantHeaderData = createSelector(
+  selectTenantFeature,
+  (state: TenantState): any[] => state.tenantHeaderData);

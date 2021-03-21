@@ -148,7 +148,6 @@ export class TenantEffects {
           .pipe(
             map(() => {
               this.dialog.closeAll();
-              debugger
               return new UpdateTenantSuccessAction(data.payload);
             }),
             catchError(error => of(new UpdateTenantFailureAction(error)))

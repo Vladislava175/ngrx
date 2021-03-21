@@ -25,7 +25,6 @@ const initialState: TenantState = {
 };
 
 export const tenantReducer = (state = initialState, action: TenantActions) => {
-  debugger
   switch (action.type) {
     case tenantActionsType.usersSuccess:
       return {
@@ -74,9 +73,16 @@ export const tenantReducer = (state = initialState, action: TenantActions) => {
           ['business_id']: action.payload.business_id,
           ['status']: action.payload.status.id
         },
-        tenantHeaderData: [...state.tenantHeaderData, [
+        tenantHeaderData: [
+          {title: 'שם חברה', value: action.payload.name},
           {title: 'מס ח.פ.', value: action.payload.business_id},
-          {title: 'סטטוס', value: action.payload.status.name}]]
+          {title: 'סטטוס', value: action.payload.status.name}],
+        tenantDetails: [
+          {title: ' בנק מצרף', value: action.payload.origin.name},
+          {title: 'שם הלקוח', value: action.payload.name},
+          {title: 'טלפון נייד', value: action.payload.phone},
+          {title: 'דואר אלקטרוני', value: action.payload.username}
+        ]
       };
     case tenantActionsType.createTenantFailure:
       return {
