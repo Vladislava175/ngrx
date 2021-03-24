@@ -7,6 +7,8 @@ import {
   CreateUserSuccessAction,
   DeleteTenantFailureAction,
   DeleteTenantSuccessAction,
+  DeleteUserFailureAction,
+  DeleteUserSuccessAction,
   GetOriginFailureAction,
   GetOriginSuccessAction,
   GetTenantFailureAction,
@@ -25,6 +27,7 @@ import {GetTenantsAction} from '../tenants/tenants.actions';
 import {TenantService} from '../../service/tenants.service';
 import {TenantDetailsState} from '../../service/tenant-details-state';
 import {MatDialog} from '@angular/material/dialog';
+import {Router} from '@angular/router';
 
 @Injectable()
 export class TenantEffects {
@@ -60,6 +63,19 @@ export class TenantEffects {
               return new GetOriginSuccessAction({origins: data});
             }),
             catchError(error => of(new GetOriginFailureAction(error)))
+          )
+      ),
+    ));
+  deleteUser = createEffect(() => this.actions$
+    .pipe(
+      ofType<GetTenantsAction>(tenantActionsType.deleteUser),
+      mergeMap(
+        (state: any) => this.tenantService.deleteUser(state.payload.tenantId, state.payload.userId)
+          .pipe(
+            map((data: any) => {
+              return new DeleteUserSuccessAction();
+            }),
+            catchError(error => of(new DeleteUserFailureAction(error)))
           )
       ),
     ));
@@ -102,6 +118,7 @@ export class TenantEffects {
           .pipe(
             map(() => {
               this.dialog.closeAll();
+              this.router.navigate(['../tenants-list']);
               return new DeleteTenantSuccessAction();
             }),
             catchError(error => of(new DeleteTenantFailureAction(error)))
@@ -157,6 +174,7 @@ export class TenantEffects {
 
   constructor(private actions$: Actions,
               private dialog: MatDialog,
+              private router: Router,
               private tenantService: TenantService,
               private state: TenantDetailsState) {
   }

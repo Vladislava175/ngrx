@@ -5,6 +5,12 @@
 <div *ngIf="tenantState.usersTableData.length == 0" class='btn-wrapper submit'>
   <button (click)="tenantState.openDialogCreate()" style="margin-left: 1%; background: #075F8F;">הוספת משתמש</button>
 </div>-->
+<div *ngIf="dataSource.length > 0" class='btn-wrapper submit'>
+  <button (click)="closePopup()" style="margin-left: 1%; background: #d04a4a;">מחיקת משתמש</button>
+</div>
+<div *ngIf="dataSource.length == 0" class='btn-wrapper submit'>
+  <button (click)="createUser()" style="margin-left: 1%; background: #075F8F;">הוספת משתמש</button>
+</div>
 <div class="table-wrapper">
   <table [dataSource]="dataSource" class="table desktop" mat-table matSort>
 

@@ -25,6 +25,7 @@ const initialState: TenantState = {
 };
 
 export const tenantReducer = (state = initialState, action: TenantActions) => {
+  debugger
   switch (action.type) {
     case tenantActionsType.usersSuccess:
       return {
@@ -53,6 +54,17 @@ export const tenantReducer = (state = initialState, action: TenantActions) => {
         ...state,
         user: action.payload.user,
         tenantId: action.payload.tenantId
+      };
+    case tenantActionsType.createUserSuccess:
+      return {
+        ...state,
+        users: [...state.users, ...state.user],
+
+      };
+    case tenantActionsType.deleteUserSuccess:
+      return {
+        ...state,
+        users: []
       };
     case tenantActionsType.createUserFailure:
       return {

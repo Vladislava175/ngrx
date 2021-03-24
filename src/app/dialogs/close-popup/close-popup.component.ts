@@ -3,7 +3,7 @@ import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {TenantDetailsState} from '../../service/tenant-details-state';
 import {Store} from '@ngrx/store';
 import {TenantsState} from '../../store/tenants/tenants.reducer';
-import {DeleteTenantAction} from '../../store/tenant-details/tenant.actions';
+import {DeleteTenantAction, DeleteUserAction} from '../../store/tenant-details/tenant.actions';
 
 @Component({
   selector: 'app-close-popup',
@@ -23,7 +23,8 @@ export class ClosePopupComponent implements OnInit {
   delete(id: number, userId: number, remove: string) {
     if (remove == 'tenant') {
       this.store$.dispatch(new DeleteTenantAction(this.data.tenantId));
-
+    } else {
+      this.store$.dispatch(new DeleteUserAction({tenantId: this.data.tenantId, userId: this.data.userId}));
     }
     /* else
      this.state.deleteUserByTenantId(id, userId);*/
