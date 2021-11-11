@@ -1,100 +1,111 @@
 :host {
-    position: sticky;
-    top: 0;
-    z-index: 99;
+  position: sticky;
+  top: 0;
+  z-index: 99;
+  background-color: #fff;
+  display: block;
+  grid-column-start: 1;
+  grid-column-end: 3;
+
+  .main-header-container {
+    display: flex;
+    justify-content: space-between;
+    color: #fff;
     background-color: #fff;
-    display: block;
-    grid-column-start: 1;
-    grid-column-end: 3;
-    .main-header-container {
-        display: flex;
-        justify-content: space-between;
-        color: #fff;
-        background-color: #fff;
-        padding: 5px 9px;
-        // max-width: 1485px;
-        margin: 0 auto;
+    padding: 5px 9px;
+    // max-width: 1485px;
+    margin: 0 auto;
+  }
+
+  //logo-menu-section
+  .logo-menu-section {
+    width: 170px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .menu-btn {
+      height: 16px;
+      width: 16px;
+      background-image: url('/assets/icons/menu-icon-close.svg');
+      background-repeat: no-repeat;
+      background-size: contain;
+      padding: 0;
+      margin-right: 8px;
+      border-radius: 0;
     }
-    //logo-menu-section
-    .logo-menu-section {
-        width: 170px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        .menu-btn {
-            height: 16px;
-            width: 16px;
-            background-image: url('/assets/icons/menu-icon-close.svg');
-            background-repeat: no-repeat;
-            background-size: contain;
-            padding: 0;
-            margin-right: 8px;
-            border-radius: 0;
-        }
+
+    img {
+      width: 130px;
+      height: auto;
+      object-fit: cover;
+    }
+
+    p {
+      font-size: 20px;
+      line-height: 24px;
+      color: #D5C272;
+      margin: 0;
+    }
+  }
+
+  //personal-section
+  .personal-section {
+    display: flex;
+    align-items: center;
+
+    p {
+      margin: 0;
+      color: #000;
+    }
+
+    .account-details {
+      display: flex;
+      align-items: center;
+
+      .icon-wrapper {
+        height: 27px;
+        width: 27px;
+
         img {
-            width: 130px;
-            height: auto;
-            object-fit: cover;
+          height: 100%;
+          width: 100%;
         }
-        p {
-            font-size: 20px;
-            line-height: 24px;
-            color: #D5C272; 
-            margin: 0;
+      }
+
+      .details-wrapper {
+        padding-right: 5px;
+
+        .name {
+          font-size: 17px;
+          line-height: 15px;
+          font-weight: 500;
         }
+
+        .logout-btn {
+          height: 14px;
+          font-size: 14px;
+          line-height: 17px;
+          color: #000;
+          text-align: right;
+          text-decoration: underline;
+          padding: 0;
+        }
+      }
     }
+  }
 
-    //personal-section
-    .personal-section {
-        display: flex;
-        align-items: center;
-        p {
-            margin: 0;
-            color: #000;
-        }
+  //Skip to content
+  .btn-skip {
+    position: fixed;
+    z-index: 1000;
+    top: -100%;
 
-        .account-details {
-            display: flex;
-            align-items: center;
-            .icon-wrapper {
-                height: 27px;
-                width: 27px;
-                img {
-                    height: 100%;
-                    width: 100%;
-                }
-            }
-            .details-wrapper {
-                padding-right: 5px;
-                .name {
-                    font-size: 17px; 
-                    line-height: 15px;
-                    font-weight: 500;
-                }
-                .logout-btn {
-                    height: 14px;
-                    font-size: 14px;
-                    line-height: 17px;
-                    color: #000;
-                    text-align: right;
-                    text-decoration: underline;
-                    padding: 0;
-                }
-            }
-        }
+    &:focus {
+      top: 0;
+      width: 0;
+      height: 0;
+      overflow: hidden;
     }
-
-    //Skip to content
-    .btn-skip {
-        position: fixed;
-        z-index: 1000;
-        top: -100%;
-
-        &:focus {
-            top: 0;
-            width: 0;
-            height: 0;
-            overflow: hidden;
-        }
-    }
+  }
 }

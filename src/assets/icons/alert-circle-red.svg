@@ -1,4 +1,6 @@
 <svg id="ic_error_24px" xmlns="http://www.w3.org/2000/svg" width="77" height="77" viewBox="0 0 77 77">
   <path id="Path_7612" data-name="Path 7612" d="M0,0H77V77H0Z" fill="none"/>
-  <path id="Path_7613" data-name="Path 7613" d="M34.083,2A32.083,32.083,0,1,0,66.167,34.083,32.1,32.1,0,0,0,34.083,2Zm3.208,48.125H30.875V43.708h6.417Zm0-12.833H30.875V18.042h6.417Z" transform="translate(4.417 4.417)" fill="#ef4560"/>
+  <path id="Path_7613" data-name="Path 7613"
+        d="M34.083,2A32.083,32.083,0,1,0,66.167,34.083,32.1,32.1,0,0,0,34.083,2Zm3.208,48.125H30.875V43.708h6.417Zm0-12.833H30.875V18.042h6.417Z"
+        transform="translate(4.417 4.417)" fill="#ef4560"/>
 </svg>

@@ -15,7 +15,8 @@
           <mat-label>שם בנק מצרף</mat-label>
           <mat-select formControlName="origin">
             <mat-option *ngFor="let origin of  origins$ | async"
-                        [value]="origin.id">{{origin.name}}</mat-option>
+                        [value]="origin.id">{{origin.name}}
+            </mat-option>
           </mat-select>
         </mat-form-field>
       </div>
@@ -24,7 +25,8 @@
           <mat-label>סטטוס טננט</mat-label>
           <mat-select formControlName="status">
             <mat-option *ngFor="let status of state.statuses"
-                        [value]="status.id">{{status.name}}</mat-option>
+                        [value]="status.id">{{status.name}}
+            </mat-option>
           </mat-select>
         </mat-form-field>
       </div>

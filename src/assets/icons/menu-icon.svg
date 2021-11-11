@@ -1,7 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="18" viewBox="0 0 20 18">
   <g id="menu_2_" data-name="menu (2)" transform="translate(0 -6)">
-    <path id="Path_295" data-name="Path 295" d="M18.065,6H1.935a1.929,1.929,0,1,0,0,3.857H18.065a1.929,1.929,0,1,0,0-3.857Z" transform="translate(0 0)" fill="#053b59"/>
-    <path id="Path_296" data-name="Path 296" d="M18.065,50H1.935a1.929,1.929,0,1,0,0,3.857H18.065a1.929,1.929,0,1,0,0-3.857Z" transform="translate(0 -36.929)" fill="#053b59"/>
-    <path id="Path_297" data-name="Path 297" d="M18.065,94H1.935a1.929,1.929,0,1,0,0,3.857H18.065a1.929,1.929,0,1,0,0-3.857Z" transform="translate(0 -73.857)" fill="#053b59"/>
+    <path id="Path_295" data-name="Path 295"
+          d="M18.065,6H1.935a1.929,1.929,0,1,0,0,3.857H18.065a1.929,1.929,0,1,0,0-3.857Z" transform="translate(0 0)"
+          fill="#053b59"/>
+    <path id="Path_296" data-name="Path 296"
+          d="M18.065,50H1.935a1.929,1.929,0,1,0,0,3.857H18.065a1.929,1.929,0,1,0,0-3.857Z"
+          transform="translate(0 -36.929)" fill="#053b59"/>
+    <path id="Path_297" data-name="Path 297"
+          d="M18.065,94H1.935a1.929,1.929,0,1,0,0,3.857H18.065a1.929,1.929,0,1,0,0-3.857Z"
+          transform="translate(0 -73.857)" fill="#053b59"/>
   </g>
 </svg>

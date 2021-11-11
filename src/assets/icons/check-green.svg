@@ -1,6 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="25" viewBox="0 0 30 25">
   <g id="Group_20038" data-name="Group 20038" transform="translate(-741 -279)">
-    <rect id="Rectangle_3808" data-name="Rectangle 3808" width="30" height="25" transform="translate(741 279)" fill="#fff"/>
-    <path id="check" d="M18.623,88.573,7.767,99.428,3.929,95.59a.465.465,0,0,0-.658,0l-.439.439a.465.465,0,0,0,0,.658l4.605,4.605a.465.465,0,0,0,.658,0L19.719,89.669a.465.465,0,0,0,0-.658l-.439-.439a.465.465,0,0,0-.658,0Z" transform="translate(744.799 196.667)" fill="#21b143"/>
+    <rect id="Rectangle_3808" data-name="Rectangle 3808" width="30" height="25" transform="translate(741 279)"
+          fill="#fff"/>
+    <path id="check"
+          d="M18.623,88.573,7.767,99.428,3.929,95.59a.465.465,0,0,0-.658,0l-.439.439a.465.465,0,0,0,0,.658l4.605,4.605a.465.465,0,0,0,.658,0L19.719,89.669a.465.465,0,0,0,0-.658l-.439-.439a.465.465,0,0,0-.658,0Z"
+          transform="translate(744.799 196.667)" fill="#21b143"/>
   </g>
 </svg>
